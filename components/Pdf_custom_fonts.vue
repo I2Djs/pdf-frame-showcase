@@ -115,10 +115,3 @@
   </div>
 </template>
 
-<style>
-
-.pdfContainer {
-  height: 100%;
-  width: 100%;
-}
-</style>

@@ -3,62 +3,34 @@
       @on-ready="onInstanceReady"
       @on-resize="onInstanceResize">
     <i-linearGradient
-        id="grad3"
-        :x1="0"
-        :y1="0"
-        :x2="100"
-        :y2="100"
+        id="grad3" :x1="0" :y1="0" :x2="100" :y2="100"
         :colorStops="[
           {
-            color: '#023c73',
-            offset: 0,
+            color: '#023c73', offset: 0,
           },
           {
-            color: '#5f0b9c',
-            offset: 50,
+            color: '#5f0b9c', offset: 50,
           },
           {
-            color: '#b814c4',
-            offset: 100,
+            color: '#b814c4', offset: 100,
           },
         ]"
       />
-      <i-rect
-        :x="0"
-        :y="0"
-        :width="width"
-        :height="height"
-        rx=50
-        ry=50
+      <i-rect 
+        :x="0" :y="0" :width="width" :height="height" rx=50 ry=50
         :style="{ fillStyle: 'grad(grad3)' }"
       />
-    <i-g :transform="{ translate: [width * 0.5 - 50,50], scale: [2, 2] }">
+    <i-g :transform="{ translate: [width * 0.5,50], scale: [1.5, 1.5] }">
       <i-rect
-        v-for="n in 30"
+        v-for="n in 60"
         v-bind:key="n"
-        :bbox="false"
-        :x="Math.sin(n * 0.4 + t) * 50"
-        :y="n * 11"
-        :width="(Math.sin(n * 0.4 - 4.5 + t) + 1) * 3 + 4"
-        :height="(Math.sin(n * 0.4 - 4.5 + t) + 1) * 3 + 4"
+        :x="Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 + t) * 50"
+        :y="n * 0.5 * 11"
+        :width="(Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 - 4.5 + t) + 1) * 3 + 4"
+        :height="(Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 - 4.5 + t) + 1) * 3 + 4"
         :style="{
-          fillStyle: 'hsl(' + ((n * 5) % 360) + ',100%,50%)',
-          opacity: Math.sin(n * 0.4 + t) + 1 + 0.1,
-          lineWidth: 1,
-        }"
-      />
-      <i-rect
-        v-for="n in 30"
-        v-bind:key="n"
-        :bbox="false"
-        :x="Math.sin((n + 7.5) * 0.4 + t) * 50"
-        :y="n * 11"
-        :width="(Math.sin((n + 7.5) * 0.4 - 4.5 + t) + 1) * 3 + 4"
-        :height="(Math.sin((n + 7.5) * 0.4 - 4.5 + t) + 1) * 3 + 4"
-        :style="{
-          fillStyle: 'hsl(' + (((n + 7.5) * 10) % 360) + ',100%,50%)',
-          opacity: Math.sin((n + 7.5) * 0.4 + t) + 1 + 0.1,
-          lineWidth: 1,
+          fillStyle: 'hsl(' + (((n * 0.5 + 7.5 * (n % 2)) * 10) % 360) + ',100%,50%)',
+          opacity: Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 - 4.5 + t) + 1 + 0.1
         }"
       />
     </i-g>
@@ -97,16 +69,3 @@ let width = ref(0);
     window.requestAnimationFrame(step);
   }
 </script>
-
-<style scoped>
-  html, body, #__nuxt {
-    height: 100%;
-    width: 100%;
-  }
-
-#canvasContid{
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-</style>

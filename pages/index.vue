@@ -1,62 +1,86 @@
 <script setup>
-import { watch, shallowRef } from 'vue';
+import { watch, shallowRef, onMounted, ref } from 'vue';
 import Canvas_example from './../components/Canvas_example.vue';
 import Canvas_path_animation from './../components/Canvas_path_animation.vue';
 import Canvas_path_morph from './../components/Canvas_path_morph.vue';
 import Pdf_example from './../components/Pdf_example.vue';
 import Pdf_custom_fonts from './../components/Pdf_custom_fonts.vue';
 import Canvas_Helix_animation from './../components/Canvas_helix_animation.vue';
-import Canvas_animation from './../components/Canvas_animate.vue';
+import Canvas_rect_animation from './../components/Canvas_animate.vue';
 import PDf_table from './../components/Pdf_table_test.vue';
 import PDf_encrypt from './../components/Pdf_encrypt_blob.vue';
 import Canvas_events from './../components/Canvas_events.vue';
 import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.vue';
-
-
+  
+  
+  let rawTemplate = shallowRef('');
+  
   let exampleList = [{
     title: 'Canvas Example',
-    component: Canvas_example
+    component: Canvas_example,
+    file: 'Canvas_example.vue'
   },{
     title: 'Canvas Path Animaton',
-    component: Canvas_path_animation
+    component: Canvas_path_animation,
+    file: 'Canvas_path_animation.vue'
   }, {
     title: 'Canvas Path Morph',
-    component: Canvas_path_morph
+    component: Canvas_path_morph,
+    file: 'Canvas_path_morph.vue'
   }, {
     title: 'Canvas Helix Animation',
-    component: Canvas_Helix_animation
+    component: Canvas_Helix_animation,
+    file: 'Canvas_helix_animation.vue'
   }, {
     title: 'Canvas Rect Animation',
-    component: Canvas_animation
+    component: Canvas_rect_animation,
+    file: 'Canvas_animate.vue'
   }, {
     title: 'PDF Example',
-    component: Pdf_example
+    component: Pdf_example,
+    file: 'Pdf_example.vue'
   }, {
     title: 'PDF Custom Fonts',
-    component: Pdf_custom_fonts
+    component: Pdf_custom_fonts,
+    file: 'Pdf_custom_fonts.vue'
   }, {
     title: 'Pdf Table rendering',
-    component: PDf_table
+    component: PDf_table,
+    file: 'Pdf_table_test.vue'
   }, {
     title: 'Pdf Encryption',
-    component: PDf_encrypt
+    component: PDf_encrypt,
+    file: 'Pdf_encrypt_blob.vue'
   }, {
     title: 'Canvas Events',
-    component: Canvas_events
+    component: Canvas_events,
+    file: 'Canvas_example.vue'
   }, {
     title: 'Canvas Tadpole Animation',
-    component: Canvas_tadpole_animation
+    component: Canvas_tadpole_animation,
+    file: 'Canvas_tadpole_animation.vue'
   }];
 
 
   let selectedValue = shallowRef('Canvas Example');
-  let selectedExample = ref('');
+  let selectedExample = shallowRef('');
 
-  watch(selectedValue, () => {
-    selectedExample.value = exampleList.filter((d)=>{
+  watch(selectedValue, async () => {
+    let selectedObj =  exampleList.filter((d)=>{
       return d.title === selectedValue.value;
-    })[0].component;
-  }, { immediate: true })
+    })[0];
+
+    selectedExample.value = selectedObj.component;
+
+    let response = await $fetch("/api/rawTemplate", {
+      method: "post",
+      body: { file: 'components/' + selectedObj.file }
+    });
+
+    rawTemplate.value = response;
+
+  }, { immediate: true });
+
 
 </script>
 
@@ -71,14 +95,21 @@ import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.v
             variant="outlined"
           > </v-select>
         </div>
-        <div class="canvasParentContainer">
+        <div class="editorParentContainer">
+            <div class="editor">
+              <v-ace-editor
+                v-model:value="rawTemplate"
+                lang="html"
+                theme="chrome"
+                style="height: 100%" />
+            </div>
             <component :is="selectedExample"></component>
         </div>
     </div>
 </template>
 
 <style>
-html, body, #app {
+html, body, #__nuxt {
     height: 100%;
     width: 100%;
     background-color: #242424;
@@ -102,7 +133,18 @@ html, body, #app {
 /*    align-items: end;*/
 }
 
-.canvasParentContainer {
+.editorParentContainer {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 100%;
+  grid-column-gap: 1rem;
+  justify-content: center;
+  padding-top: 1.5rem;
+}
+
+.editor {
   height: 100%;
   width: 100%;
 }
@@ -112,4 +154,15 @@ html, body, #app {
   width: 100%;
   position: relative;
 }
+
+.canvasParentContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.pdfContainer {
+  height: 100%;
+  width: 100%;
+}
+
 </style>

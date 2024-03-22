@@ -10,54 +10,41 @@
         :y2="100"
         :colorStops="[
           {
-            color: '#023c73',
-            offset: 0
+            color: '#023c73', offset: 0
           },
           {
-            color: '#5f0b9c',
-            offset: 50
+            color: '#5f0b9c', offset: 50
           },
           {
-            color: '#b814c4',
-            offset: 100
+            color: '#b814c4', offset: 100
           },
         ]"
       />
       <i-rect
-        :x="0"
-        :y="0"
-        :width="width"
-        :height="height"
-        rx=50
-        ry=50
+        :x="0" :y="0" :width="width" :height="height" rx=50 ry=50
         :style="{ fillStyle: 'grad(grad3)' }"
       />
       <i-g class="heads" :style="{
                         strokeStyle: 'white',
                         lineJoin: 'round',
                         lineCap: 'round',
-                    }">
+                    }" :bbox="false">
         <i-g v-for="(d, index) in dataArray" v-bind:key="index">
           <i-polyline
             class="mid"
             :style= "{ lineWidth: 4 }"
-            :bbox="false"
             :points="d.midArr"
           >
           </i-polyline>
           <i-polyline
             class="tail"
             :style= "{ lineWidth: 1 }"
-            :bbox="false"
             :points="d.tail"
           >
         </i-polyline>
 
         <i-ellipse
-        :cx="0"
-        :cy="0"
-        :rx="6.5"
-        :ry="4"
+        :cx="0" :cy="0" :rx="6.5" :ry="4"
         :style="{
           fillStyle: '#ffffff'
         }"
@@ -65,7 +52,6 @@
           translate: [d.px[0], d.py[0]],
           rotate: [Math.atan2(d.vy, d.vx) * (360 / (2 * Math.PI)), 0, 0]
         }"
-        :bbox="false"
         ></i-ellipse>
       </i-g>
     </i-g>
@@ -77,27 +63,22 @@ import { ref, onMounted } from 'vue';
 const n = 500;
 const v = 2;
 const m = 12;
-let width = ref(1000);
-let height = ref(1000);
-const tadpoles = new Array(n).fill().map(() => ({
-    vx: (Math.random() - 0.5) * v,
-    vy: (Math.random() - 0.5) * v,
-    px: new Array(m).fill(Math.random() * width.value),
-    py: new Array(m).fill(Math.random() * height.value),
-    count: 0,
-    midArr: [],
-    tail: []
-}));
+let width = ref(0);
+let height = ref(0);
 
-let dataArray = ref(tadpoles);
+let dataArray = ref([]);
+let sqrt = Math.sqrt;
+let sin = Math.sin;
 
   function step() {
-      dataArray.value.forEach(function (t) {
+      let t;
+      for (let i =0, len = dataArray.value.length; i < len; i++ ) {
+          t = dataArray.value[i];
           let dx = t.vx;
           let dy = t.vy;
           let x = (t.px[0] += dx);
           let y = (t.py[0] += dy);
-          let speed = Math.sqrt(dx * dx + dy * dy);
+          let speed = sqrt(dx * dx + dy * dy);
           const count = speed * 10;
           const k1 = -5 - speed / 3;
 
@@ -109,10 +90,10 @@ let dataArray = ref(tadpoles);
           for (var j = 1; j < m; ++j) {
               const vx = x - t.px[j];
               const vy = y - t.py[j];
-              const k2 = Math.sin(((t.count += count) + j * 3) / 300) / speed;
+              const k2 = sin(((t.count += count) + j * 3) / 300) / speed;
               t.px[j] = (x += (dx / speed) * k1) - dy * k2;
               t.py[j] = (y += (dy / speed) * k1) + dx * k2;
-              speed = Math.sqrt((dx = vx) * dx + (dy = vy) * dy);
+              speed = sqrt((dx = vx) * dx + (dy = vy) * dy);
           }
 
           let midArr = [];
@@ -123,7 +104,7 @@ let dataArray = ref(tadpoles);
 
           t.midArr = midArr;
           t.tail = tail;
-      });
+      }
 
       var elementExists = document.getElementById("tadpoleExample");
       if (elementExists) {
@@ -139,23 +120,17 @@ let dataArray = ref(tadpoles);
   function onInstanceReady (layer) {
     width.value = layer.width;
     height.value = layer.height;
+
+    dataArray.value = new Array(n).fill().map(() => ({
+        vx: (Math.random() - 0.5) * v,
+        vy: (Math.random() - 0.5) * v,
+        px: new Array(m).fill(Math.random() * width.value),
+        py: new Array(m).fill(Math.random() * height.value),
+        count: 0,
+        midArr: [],
+        tail: []
+    }));
+
     window.requestAnimationFrame(step);
   }
 </script>
-<style>
-html, body, #__nuxt {
-    height: 100%;
-    width: 100%;
-  }
-
-.canvasParentContainer {
-  height: 100%;
-  width: 100%;
-}
-
-#canvasContainer{
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-</style>

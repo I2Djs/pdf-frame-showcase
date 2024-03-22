@@ -13,9 +13,11 @@
     "@i2d/pdf-frame-vue": "^2.0.0",
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
+    "@nuxt/content": "^2.12.1",
     "nuxt": "^3.11.1",
     "vue": "^3.4.21",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vue3-ace-editor": "^2.2.4"
   },
   "devDependencies": {
     "vite-plugin-vuetify": "^2.0.3",

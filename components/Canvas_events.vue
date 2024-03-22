@@ -42,21 +42,3 @@ let height = ref(0);
   }
 
 </script>
-
-<style>
-html, body, #__nuxt {
-    height: 100%;
-    width: 100%;
-  }
-
-.canvasParentContainer {
-  height: 100%;
-  width: 100%;
-}
-
-#canvasContainer{
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-</style>

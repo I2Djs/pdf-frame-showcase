@@ -10,29 +10,21 @@
         :y2="100"
         :colorStops="[
           {
-            color: '#023c73',
-            offset: 0,
+            color: '#023c73', offset: 0,
           },
           {
-            color: '#5f0b9c',
-            offset: 50,
+            color: '#5f0b9c', offset: 50,
           },
           {
-            color: '#b814c4',
-            offset: 100,
+            color: '#b814c4', offset: 100,
           },
         ]"
       />
       <i-rect
-        :x="0"
-        :y="0"
-        :width="width"
-        :height="height"
-        rx=50
-        ry=50
+        :x="0" :y="0" :width="width" :height="height" rx=50 ry=50
         :style="{ fillStyle: 'grad(grad3)' }"
       />
-      <i-g :transform="{ translate: [width * 0.25 - 50,-50], scale:[0.85, 0.85] }">
+      <i-g :transform="{ translate: [width * 0.25 - 200,-50], scale:[0.85, 0.85] }">
         <i-path
           v-for="n in 40"
           v-bind:key="n"
@@ -72,20 +64,3 @@
   }
 </script>
 
-<style>
-html, body, #__nuxt {
-    height: 100%;
-    width: 100%;
-  }
-
-.canvasParentContainer {
-  height: 100%;
-  width: 100%;
-}
-
-#canvasContainer{
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
-</style>
