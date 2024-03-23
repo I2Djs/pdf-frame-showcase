@@ -14,9 +14,17 @@
           </template>
           <v-app-bar-title><label>PDF-Frame</label></v-app-bar-title>
           <v-spacer></v-spacer>
-          <v-btn icon>
-          <v-icon size="x-large">mdi-github</v-icon>
-        </v-btn>
+          <div class="action-btns">
+            <v-btn density="comfortable" href="https://github.com/I2Djs/pdf-frame" color="deep-purple-darken-1" rounded="xs" size="x-large" :slim="true">
+              <v-icon size="x-large">mdi-github</v-icon>
+              PDF-Frame
+            </v-btn>
+
+            <v-btn density="comfortable" href="https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue" color="purple-accent-4" rounded="xs" size="x-large" :slim="true">
+              <v-icon size="x-large">mdi-school-outline</v-icon>
+              Guide
+            </v-btn>
+          </div>
         </v-app-bar>
       <v-main class="d-flex align-center justify-center" style="min-height: 300px;">
         <NuxtPage />
@@ -25,3 +33,10 @@
   </v-app>
   </NuxtLayout>
 </template>
+<style scoped>
+  .action-btns{
+    display: flex;
+    grid-column-gap: 2rem;
+    padding-right: 3rem;
+  }
+</style>

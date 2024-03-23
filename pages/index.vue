@@ -11,6 +11,7 @@ import PDf_table from './../components/Pdf_table_test.vue';
 import PDf_encrypt from './../components/Pdf_encrypt_blob.vue';
 import Canvas_events from './../components/Canvas_events.vue';
 import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.vue';
+import Canvas_line_chart from './../components/Canvas_line_chart.vue';
   
   
   let rawTemplate = shallowRef('');
@@ -19,7 +20,19 @@ import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.v
     title: 'Canvas: Basic Rendering',
     component: Canvas_example,
     file: 'Canvas_example.vue'
-  },{
+  }, {
+    title: 'PDF: Basic Rendering',
+    component: Pdf_example,
+    file: 'Pdf_example.vue'
+  }, {
+    title: 'Canvas: Line Chart; Resizable',
+    component: Canvas_line_chart,
+    file: 'Canvas_line_chart.vue'
+  }, {
+    title: 'PDF: Table rendering; Auto Pagination',
+    component: PDf_table,
+    file: 'Pdf_table_test.vue'
+  }, {
     title: 'Canvas: Path Animaton',
     component: Canvas_path_animation,
     file: 'Canvas_path_animation.vue'
@@ -27,6 +40,10 @@ import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.v
     title: 'Canvas: Path Morph',
     component: Canvas_path_morph,
     file: 'Canvas_path_morph.vue'
+  }, {
+    title: 'PDF: Custom Fonts',
+    component: Pdf_custom_fonts,
+    file: 'Pdf_custom_fonts.vue'
   }, {
     title: 'Canvas: Tadpole Animation',
     component: Canvas_tadpole_animation,
@@ -36,25 +53,13 @@ import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.v
     component: Canvas_Helix_animation,
     file: 'Canvas_helix_animation.vue'
   }, {
-    title: 'Canvas: Rect Animation',
-    component: Canvas_rect_animation,
-    file: 'Canvas_animate.vue'
-  }, {
-    title: 'PDF: Basic Rendering',
-    component: Pdf_example,
-    file: 'Pdf_example.vue'
-  }, {
-    title: 'PDF: Custom Fonts',
-    component: Pdf_custom_fonts,
-    file: 'Pdf_custom_fonts.vue'
-  }, {
-    title: 'PDF: Table rendering; Auto Pagination',
-    component: PDf_table,
-    file: 'Pdf_table_test.vue'
-  }, {
     title: 'PDF: Encryption',
     component: PDf_encrypt,
     file: 'Pdf_encrypt_blob.vue'
+  }, {
+    title: 'Canvas: Rect Animation',
+    component: Canvas_rect_animation,
+    file: 'Canvas_animate.vue'
   }, {
     title: 'Canvas: Events',
     component: Canvas_events,
