@@ -3,7 +3,7 @@ import path from 'path';
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const filePath = path.resolve('public/components', body.file); // Adjust the path to your Vue component
+  const filePath = path.resolve('components', body.file); // Adjust the path to your Vue component
 
   try {
     const content = fs.readFileSync(filePath, 'utf8');
