@@ -74,7 +74,7 @@ import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.v
 
     let response = await $fetch("/api/rawTemplate", {
       method: "post",
-      body: { file: 'components/' + selectedObj.file }
+      body: { file: selectedObj.file }
     });
 
     rawTemplate.value = response;
