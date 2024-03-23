@@ -16,59 +16,63 @@ import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.v
   let rawTemplate = shallowRef('');
   
   let exampleList = [{
-    title: 'Canvas Example',
+    title: 'Canvas: Basic Rendering',
     component: Canvas_example,
     file: 'Canvas_example.vue'
   },{
-    title: 'Canvas Path Animaton',
+    title: 'Canvas: Path Animaton',
     component: Canvas_path_animation,
     file: 'Canvas_path_animation.vue'
   }, {
-    title: 'Canvas Path Morph',
+    title: 'Canvas: Path Morph',
     component: Canvas_path_morph,
     file: 'Canvas_path_morph.vue'
   }, {
-    title: 'Canvas Helix Animation',
+    title: 'Canvas: Tadpole Animation',
+    component: Canvas_tadpole_animation,
+    file: 'Canvas_tadpole_animation.vue'
+  }, {
+    title: 'Canvas: Helix Animation',
     component: Canvas_Helix_animation,
     file: 'Canvas_helix_animation.vue'
   }, {
-    title: 'Canvas Rect Animation',
+    title: 'Canvas: Rect Animation',
     component: Canvas_rect_animation,
     file: 'Canvas_animate.vue'
   }, {
-    title: 'PDF Example',
+    title: 'PDF: Basic Rendering',
     component: Pdf_example,
     file: 'Pdf_example.vue'
   }, {
-    title: 'PDF Custom Fonts',
+    title: 'PDF: Custom Fonts',
     component: Pdf_custom_fonts,
     file: 'Pdf_custom_fonts.vue'
   }, {
-    title: 'Pdf Table rendering',
+    title: 'PDF: Table rendering; Auto Pagination',
     component: PDf_table,
     file: 'Pdf_table_test.vue'
   }, {
-    title: 'Pdf Encryption',
+    title: 'PDF: Encryption',
     component: PDf_encrypt,
     file: 'Pdf_encrypt_blob.vue'
   }, {
-    title: 'Canvas Events',
+    title: 'Canvas: Events',
     component: Canvas_events,
     file: 'Canvas_example.vue'
-  }, {
-    title: 'Canvas Tadpole Animation',
-    component: Canvas_tadpole_animation,
-    file: 'Canvas_tadpole_animation.vue'
   }];
 
 
-  let selectedValue = shallowRef('Canvas Example');
+  let selectedValue = shallowRef('Canvas: Basic Rendering');
   let selectedExample = shallowRef('');
 
   watch(selectedValue, async () => {
     let selectedObj =  exampleList.filter((d)=>{
       return d.title === selectedValue.value;
     })[0];
+
+    if (!selectedObj) {
+      return;
+    }
 
     selectedExample.value = selectedObj.component;
 

@@ -1,7 +1,7 @@
 <template>
   <div class="canvasParentContainer">
     <pdfFrame
-      id="canvasContainer"
+      id="canvasBasicContainer"
       type="canvas"
       @on-ready="onInstanceReady"
       @on-resize="onInstanceResize"
@@ -43,13 +43,13 @@
         <i-rect
           v-for="n in 120"
           v-bind:key="n"
-          :x="Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4) * 50"
+          :x="Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 + t) * 50"
           :y="n * 0.5 * 11"
-          :width="(Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 - 4.5) + 1) * 3 + 4"
-          :height="(Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 - 4.5) + 1) * 3 + 4"
+          :width="(Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 - 4.5 + t) + 1) * 3 + 4"
+          :height="(Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 - 4.5 + t) + 1) * 3 + 4"
           :style="{
             fillStyle: 'hsl(' + (((n * 0.5 + 7.5 * (n % 2)) * 10) % 360) + ',100%,50%)',
-            opacity: Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 - 4.5) + 1 + 0.1
+            opacity: Math.sin((n * 0.5 + 7.5 * (n % 2)) * 0.4 - 4.5 + t) + 1 + 0.1
           }"
         />
       </i-g>
@@ -77,6 +77,9 @@
 
 <script setup>
   import { ref, watch,onMounted } from "vue";
+  let t = ref(0);
+  let loopCount = 2000;
+  let runningCount = 0;
 
   let width = ref(0);
   let height = ref(0);
@@ -89,5 +92,14 @@
   function onInstanceReady (layer) {
     width.value = layer.width;
     height.value = layer.height;
+    window.requestAnimationFrame(step);
+  }
+  
+  function step() {
+      t.value = t.value + 0.01;
+      var elementExists = document.getElementById("canvasBasicContainer");
+        if (elementExists) {
+          window.requestAnimationFrame(step);
+        }
   }
 </script>
