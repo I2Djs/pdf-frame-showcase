@@ -88,6 +88,11 @@ import Canvas_line_chart from './../components/Canvas_line_chart.vue';
   }, { immediate: true });
 
 
+const editorInit = (editor) => {
+  editor.setReadOnly(true);
+};
+
+
 </script>
 
 <template>
@@ -107,7 +112,9 @@ import Canvas_line_chart from './../components/Canvas_line_chart.vue';
                 v-model:value="rawTemplate"
                 lang="html"
                 theme="chrome"
-                style="height: 100%" />
+                :readOnly="true"
+                style="height: 100%"
+                @init="editorInit" />
             </div>
             <component :is="selectedExample"></component>
         </div>

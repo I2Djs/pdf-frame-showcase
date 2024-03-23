@@ -10,18 +10,18 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@i2d/pdf-frame-vue": "^2.0.0",
+    "@i2d/nuxt-pdf-frame": "^0.0.2",
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
     "@nuxt/content": "^2.12.1",
+    "d3-array": "latest",
+    "d3-scale": "latest",
+    "d3-shape": "^3.2.0",
+    "d3-time-format": "latest",
     "nuxt": "^3.11.1",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0",
-    "vue3-ace-editor": "^2.2.4",
-    "d3-array": "latest",
-    "d3-scale": "latest",
-    "d3-time-format": "latest",
-    "d3-shape": "^3.2.0"
+    "vue3-ace-editor": "^2.2.4"
   },
   "devDependencies": {
     "vite-plugin-vuetify": "^2.0.3",
