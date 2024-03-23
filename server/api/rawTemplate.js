@@ -10,6 +10,6 @@ export default defineEventHandler(async (event) => {
     // Optionally, you can parse the content here to extract only the <template> part
     return content; // Return the raw content of the Vue component
   } catch (error) {
-    return createError({ statusCode: 404, statusMessage: 'Component not found' });
+    return createError({ statusCode: 404, statusMessage: 'Component not found', path: filePath });
   }
 });
