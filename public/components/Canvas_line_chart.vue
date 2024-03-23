@@ -1,11 +1,31 @@
 <template>
     <div class="chart-container" test-id="askldnlaksdj">
         <pdf-frame type="canvas" @on-ready="onLayerReady" @on-resize="onLayerResize">
+            <i-group class="backGround">
+                <i-linearGradient
+                    id="grad3" :x1="0" :y1="0" :x2="100" :y2="100"
+                    :colorStops="[
+                      {
+                        color: '#023c73', offset: 0,
+                      },
+                      {
+                        color: '#5f0b9c', offset: 50,
+                      },
+                      {
+                        color: '#b814c4', offset: 100,
+                      },
+                    ]"
+                  />
+                  <i-rect :x="0" :y="0" :width="width" :height="height" rx=20 ry=20
+                    :style="{ fillStyle: 'grad(grad3)' }"
+                  />
+              </i-group>
+              
             <i-group :transform="chartTransform">
                 <i-path
                     :d="dataPoints"
                     :style="{
-                        strokeStyle: '#02707a', lineWidth: 2,
+                        strokeStyle: '#ebf2ff', lineWidth: 2,
                     }"></i-path>
                 <i-group class="circleGroup">
                     <i-group
@@ -17,13 +37,13 @@
                             :cx="-2"
                             :cy="0"
                             :r="4"
-                            :style="{ fillStyle: '#02707a' }"></i-circle>
+                            :style="{ fillStyle: '#ffffff' }"></i-circle>
                         <i-text
                             v-if="item.value !== 0"
                             class="count"
                             :x="-2"
                             :y="-15"
-                            :style="{ fillStyle: '#000000', font: '9px', textAlign:'center' }"
+                            :style="{ fillStyle: '#ffffff', font: '9px', textAlign:'center' }"
                             :text="item.value"></i-text>
                     </i-group>
                 </i-group>
@@ -39,14 +59,14 @@
                                 return tick % 5 === 0 ? 6 : 3;
                             }
                         "
-                        :style="{ strokeStyle: '#000000' }"></i-line>
+                        :style="{ strokeStyle: '#ffffff' }"></i-line>
                     <i-text
                         v-for="(ticktext, index) in axisTicksTickText"
                         :key="index"
                         :x="ticktext.xPos - 20"
                         :y="10"
                         :text="ticktext.time"
-                        :style="{ fillStyle: '#000', font: '9px Arial' }"></i-text>
+                        :style="{ fillStyle: '#ffffff', font: '9px Arial' }"></i-text>
                 </i-group>
             </i-group>
         </pdf-frame>
@@ -65,7 +85,7 @@ const heightScale = scaleLinear();
 const tickWidth = 10;
 const padding = {
     top: 40,
-    bottom: 20,
+    bottom: 40,
     left: 20,
     right: 40,
 };
@@ -183,7 +203,7 @@ function fetchcirclePosition(d) {
 
 <style scoped>
     .chart-container {
-        height: 200px;
+        height: 250px;
         width: 100%;
     }
 </style>
