@@ -14,10 +14,9 @@
             :style="{
                 fill: '#0ff000'
             }"
-            :event="{
-                mousein: mouseinhdlr,
-                mouseout: mouseouthdlr
-            }">
+            @mousein="mouseinhdlr"
+            @mouseout="mouseouthdlr"
+          >
         </i-circle>
     </pdfFrame>
   </div>

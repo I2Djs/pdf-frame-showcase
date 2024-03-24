@@ -63,7 +63,7 @@ import Canvas_line_chart from './../components/Canvas_line_chart.vue';
   }, {
     title: 'Canvas: Events',
     component: Canvas_events,
-    file: 'Canvas_example.vue'
+    file: 'Canvas_events.vue'
   }];
 
 

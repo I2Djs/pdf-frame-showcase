@@ -10,7 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
-    "@i2d/nuxt-pdf-frame": "^0.0.2",
+    "@i2d/nuxt-pdf-frame": "^0.0.4",
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
     "@nuxt/content": "^2.12.1",
