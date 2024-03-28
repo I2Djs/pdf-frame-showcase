@@ -38,17 +38,17 @@
         v-for="(d, n) in rectCount"
         v-bind:key="n"
         :x="6 * n"
-        :y="100"
+        :y="0"
         :width="4"
-        :height="-1 * (100 + Math.random() * 300)"
-        :transform="{ translate: [0, 500] }"
+        :height="-1 * (100 + Math.random() * (height - 100))"
+        :transform="{ translate: [0, height] }"
         :style="{
           fillStyle: 'hsl(' + ((n * 4) % 360) + ',100%,50%)',
         }"
       >
         <i-animate
           :to="{ 
-            height: -1 * (100 + Math.random() * 300),
+            height: -1 * (100 + Math.random() * (height - 100)),
             style:{
               fillStyle: 'hsl(' + ((Math.random() * 25 * 4) % 360) + ',100%,50%)',
             }

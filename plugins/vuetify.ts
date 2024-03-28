@@ -12,7 +12,7 @@ export default defineNuxtPlugin((app) => {
       sets: {
         mdi,
       },
-    }
+    },
   });
   app.vueApp.use(vuetify)
 })

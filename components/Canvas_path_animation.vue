@@ -24,11 +24,11 @@
         :x="0" :y="0" :width="width" :height="height" rx=50 ry=50
         :style="{ fillStyle: 'grad(grad3)' }"
       />
-      <i-g :transform="{ translate: [width * 0.25 - 200,-50], scale:[0.85, 0.85] }">
+      <i-g :transform="{ scale: [viewportScaleX, viewportScaleY] }">
         <i-path
           v-for="n in 40"
           v-bind:key="n"
-          :transform="{ translate: [100 + n * 5, 100 + n * 5] }"
+          :transform="{ translate: [200 + n * 5, 50 + n * 5] }"
           :style="{
             lineWidth: 3,
             stroke: 'hsl(' + ((n * 5) % 360) + ',100%,50%)'
@@ -51,16 +51,26 @@
 <script setup>
   let width = ref(0);
   let height = ref(0);
+  let viewportScaleX = ref(0);
+  let viewportScaleY = ref(0);
 
   function onInstanceResize(data) {
     width.value = data.width;
     height.value = data.height;
+    updateScale();
   }
 
   function onInstanceReady (layer) {
     width.value = layer.width;
     height.value = layer.height;
-    console.log(width);
+    updateScale();
+  }
+
+  function  updateScale () {
+    let sx = (width.value / 1000) > 1 ? 1 : (width.value / 1000);
+    let sy = (height.value / 800) > 1 ? 1 : (height.value / 800);
+    
+    viewportScaleX = viewportScaleY = Math.min(sx, sy);
   }
 </script>
 

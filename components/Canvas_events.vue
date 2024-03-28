@@ -14,6 +14,8 @@
             :style="{
                 fill: '#0ff000'
             }"
+            @mouseover="mouseinhdlr"
+            @mouseup="mouseouthdlr"
             @mousein="mouseinhdlr"
             @mouseout="mouseouthdlr"
           >

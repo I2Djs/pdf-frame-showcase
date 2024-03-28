@@ -12,8 +12,9 @@ import PDf_encrypt from './../components/Pdf_encrypt_blob.vue';
 import Canvas_events from './../components/Canvas_events.vue';
 import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.vue';
 import Canvas_line_chart from './../components/Canvas_line_chart.vue';
+import { useDisplay } from 'vuetify'
   
-  
+  const { smAndDown } = useDisplay()
   let rawTemplate = shallowRef('');
   
   let exampleList = [{
@@ -87,6 +88,8 @@ import Canvas_line_chart from './../components/Canvas_line_chart.vue';
 
   }, { immediate: true });
 
+  const { mobile } = useDisplay()
+
 
 const editorInit = (editor) => {
   editor.setReadOnly(true);
@@ -96,18 +99,40 @@ const editorInit = (editor) => {
 </script>
 
 <template>
-    <div class="container">
-        <div class="exampleSelector">
+  <v-container fluid class="d-flex flex-column ps-12 pt-5">
+      <v-row class="d-flex flex-column">
+        <v-banner class="d-flex justify-center text-subtitle-1 text-center pb-0 font-weight-medium" text="Discover PDF-Frame, the JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue and Nuxt for dynamic graphical content creation." border=0>
+            
+        </v-banner>
+        <v-banner class="d-flex justify-center text-subtitle-1 text-center pt-2 main-sub-title font-weight-medium" position="sticky" border=0>
+            Powered By <v-btn variant="tonal" href="https://github.com/I2Djs/I2Djs" color="pink-accent-3" class="rounded-pill ml-2" density="compact"> I2Djs </v-btn>
+        </v-banner>
+      </v-row>
+      <v-row class="fill-width ps-10">
           <v-select
             label="Select"
             :items="exampleList"
              v-model="selectedValue"
+             hint="Select example from the list"
+             persistent-hint
             :item-props="(d) => d"
             variant="outlined"
           > </v-select>
-        </div>
-        <div class="editorParentContainer">
-            <div class="editor">
+      </v-row>
+      <v-row justify="space-around" >
+          <v-banner class="d-flex justify-center text-center text-subtitle-1 example-title" lines="one" :stacked="false" position="sticky">
+            Try PDF-Frame vue examples on - 
+            <template v-slot:actions>
+              <v-btn class="rounded-pill ml-2" density="compact" color="deep-purple-darken-4" prepend-icon="mdi-pencil" variant="tonal" href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase">Stackblitz</v-btn>
+            </template>
+          </v-banner>
+      </v-row>
+      <v-row class="fill-height fill-width justify-space-around mb-5" >
+          <v-col
+              cols="12"
+              md="5"
+              :class="smAndDown ? 'order-2' : 'order-1'"
+            >
               <v-ace-editor
                 v-model:value="rawTemplate"
                 lang="html"
@@ -115,10 +140,18 @@ const editorInit = (editor) => {
                 :readOnly="true"
                 style="height: 100%"
                 @init="editorInit" />
-            </div>
+            <!-- </div> -->
+          </v-col>
+          <v-col
+              cols="12"
+              md="7"
+              :class=" smAndDown ? 'order-1' : 'order-2'"
+            >
             <component :is="selectedExample"></component>
-        </div>
-    </div>
+          </v-col>
+        <!-- </div> -->
+      </v-row>
+  </v-container>
 </template>
 
 <style>
@@ -131,12 +164,12 @@ html, body, #__nuxt {
 .container {
     height: 100%;
     width: 100%;
-    display: grid;
-    grid-template-rows: 4rem 1fr;
+/*    display: grid;*/
+    /*grid-template-rows: 4rem 1fr;
     grid-template-columns: 100%;
     grid-row-gap: 1rem;
     justify-content: center;
-    padding-top: 3rem;
+    padding-top: 3rem;*/
 }
 
 .exampleSelector {
@@ -178,4 +211,16 @@ html, body, #__nuxt {
   width: 100%;
 }
 
+.main-title {
+  color: #8E24AA !important;
+}
+
+
+.main-sub-title {
+  color: #D81B60 !important;
+}
+
+.example-title {
+  color: #5E35B1 !important;
+}
 </style>

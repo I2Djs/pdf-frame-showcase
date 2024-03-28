@@ -203,7 +203,9 @@ function fetchcirclePosition(d) {
 
 <style scoped>
     .chart-container {
-        height: 250px;
+/*        height: 250px;*/
+        max-height: 250px;
+        height: 100%;
         width: 100%;
     }
 </style>
