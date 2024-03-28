@@ -1,6 +1,5 @@
 <template>
-  <div class="canvasParentContainer">
-    <pdfFrame id="nswamyid" type="canvas" @on-ready="onInstanceReady"
+    <pdfFrame id="path-animatiom" type="canvas" @on-ready="onInstanceReady"
       @on-resize="onInstanceResize">
       <i-linearGradient
         id="grad3"
@@ -46,7 +45,6 @@
         </i-path>
       </i-g>
   </pdfFrame>
-  </div>
 </template>
 <script setup>
   let width = ref(0);

@@ -1,5 +1,4 @@
 <template>
-  <div class="canvasParentContainer">
     <pdfFrame
       id="canvasContainer"
       type="canvas"
@@ -21,7 +20,6 @@
           >
         </i-circle>
     </pdfFrame>
-  </div>
 </template>
 
 <script setup>

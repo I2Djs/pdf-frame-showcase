@@ -1,5 +1,4 @@
 <template>
-  <div class="canvasParentContainer">
     <pdfFrame id="tadpoleExample" type="canvas" @on-ready="onInstanceReady"
       @on-resize="onInstanceResize">
       <i-linearGradient
@@ -56,7 +55,6 @@
       </i-g>
     </i-g>
   </pdfFrame>
-  </div>
 </template>
 <script setup>
 import { ref, onMounted } from 'vue';

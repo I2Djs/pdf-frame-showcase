@@ -34,7 +34,6 @@
 </script>
 
 <template>
-  <div class="pdfContainer">
     <iframe src="" height="100%" width="100%" id="ext_iframe_"></iframe>
     <pdfFrame
       id="nswamyid"
@@ -173,5 +172,4 @@
         
       </i-page>
     </pdfFrame>
-  </div>
 </template>

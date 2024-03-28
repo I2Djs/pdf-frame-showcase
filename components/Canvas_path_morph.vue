@@ -1,5 +1,4 @@
 <template>
-  <div class="canvasParentContainer">
     <pdfFrame id="nswamyid" type="canvas" @on-ready="onInstanceReady"
       @on-resize="onInstanceResize">
         <i-linearGradient
@@ -48,7 +47,6 @@
         </i-path>
       </i-g>
   </pdfFrame>
-  </div>
 </template>
 
 <script setup>

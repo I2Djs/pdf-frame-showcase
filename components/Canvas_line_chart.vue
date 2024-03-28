@@ -1,5 +1,4 @@
 <template>
-    <div class="chart-container" test-id="askldnlaksdj">
         <pdf-frame type="canvas" @on-ready="onLayerReady" @on-resize="onLayerResize">
             <i-group class="backGround">
                 <i-linearGradient
@@ -70,7 +69,6 @@
                 </i-group>
             </i-group>
         </pdf-frame>
-    </div>
 </template>
 
 <script setup>
@@ -207,5 +205,6 @@ function fetchcirclePosition(d) {
         max-height: 250px;
         height: 100%;
         width: 100%;
+        position: relative;
     }
 </style>

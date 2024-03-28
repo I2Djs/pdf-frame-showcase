@@ -1,5 +1,4 @@
 <template>
-  <div class="canvasParentContainer">
     <pdfFrame id="nswamyid" type="canvas" 
       @on-ready="onInstanceReady"
       @on-resize="onInstanceResize">
@@ -60,7 +59,6 @@
       </i-rect>
     </i-g>
   </pdfFrame>
-  </div>
 </template>
 <script setup>
     let width = ref(0);

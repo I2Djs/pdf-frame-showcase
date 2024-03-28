@@ -1,5 +1,4 @@
 <template>
-    <div class="pdfContainer">
         <pdfFrame
             :id="id"
             type="pdf"
@@ -86,7 +85,6 @@
                   </i-group>
             </i-page>
         </pdfFrame>
-    </div>
 </template>
 
 <script setup>

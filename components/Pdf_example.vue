@@ -2,7 +2,6 @@
 </script>
 
 <template>
-  <div class="pdfContainer">
     <pdfFrame
       id="samplePdf"
       type="pdf"
@@ -141,5 +140,4 @@
         
       </i-page>
     </pdfFrame>
-  </div>
 </template>
