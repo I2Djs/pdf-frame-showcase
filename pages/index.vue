@@ -99,14 +99,14 @@ const editorInit = (editor) => {
 </script>
 
 <template>
-  <v-container fluid class="d-flex flex-column pl-12 pr-12 pt-5">
-      <v-row class="d-flex flex-column justify-top justify-space-around">
-        <v-banner class="d-flex justify-center text-subtitle-1 text-center pb-0 font-weight-medium main-banner" justify="space-around" :stacked="false"  position="sticky" border=0>
-            <template v-slot:text class="justify-center">
+  <v-container fluid class="d-flex flex-column pl-12 pr-12 pt-5" style="overflow-y: auto;">
+      <v-row class="d-flex flex-column justify-top justify-space-around h-auto" >
+        <v-banner class="h-auto d-flex justify-center text-subtitle-1 text-center pb-0 font-weight-medium main-banner" justify="space-around" :stacked="false"  position="sticky" border=0>
+            <template v-slot:text>
               Discover PDF-Frame, the JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue and Nuxt for dynamic graphical content creation.
             </template>
         </v-banner>
-        <v-banner class="d-flex justify-center text-subtitle-1 text-center pt-2 main-sub-title font-weight-medium" position="sticky" border=0>
+        <v-banner density="compact" class="d-flex justify-center text-subtitle-1 text-center pt-2 main-sub-title font-weight-medium" position="sticky" border=0>
             Powered By <v-btn variant="tonal" href="https://github.com/I2Djs/I2Djs" color="pink-accent-3" class="rounded-pill ml-2" density="compact"> I2Djs </v-btn>
         </v-banner>
       </v-row>
@@ -119,6 +119,7 @@ const editorInit = (editor) => {
              persistent-hint
             :item-props="(d) => d"
             variant="outlined"
+            :density="mdAndUp ? 'default':'compact'"
           > </v-select>
       </v-row>
       <v-row justify="space-around" >
@@ -132,7 +133,7 @@ const editorInit = (editor) => {
             </template> -->
           </v-banner>
       </v-row>
-      <v-row class="fill-width justify-space-around mb-5" style="min-height: 600px;" >
+      <v-row class="fill-width justify-space-around mb-5" style="min-height: 600px; overflow-y: auto;" >
           <v-col
               cols="12"
               md="7"
@@ -234,6 +235,6 @@ html, body, #__nuxt {
 }
 
 .main-banner .v-banner-text {
-  padding-inline-end: 0px;
+  padding-inline-end: 0px !important;
 }
 </style>
