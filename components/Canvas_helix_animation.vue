@@ -17,7 +17,7 @@
         ]"
       />
       <i-rect 
-        :x="0" :y="0" :width="width" :height="height" rx=50 ry=50
+        :x="0" :y="0" :width="width" :height="height" rx=20 ry=20
         :style="{ fillStyle: 'grad(grad3)' }"
       />
     <i-g :transform="{ translate: [width * 0.5,50], scale: [1.5, 1.5] }">

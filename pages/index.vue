@@ -14,7 +14,7 @@ import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.v
 import Canvas_line_chart from './../components/Canvas_line_chart.vue';
 import { useDisplay } from 'vuetify'
   
-  const { smAndDown } = useDisplay()
+  const { mdAndUp } = useDisplay()
   let rawTemplate = shallowRef('');
   
   let exampleList = [{
@@ -99,16 +99,18 @@ const editorInit = (editor) => {
 </script>
 
 <template>
-  <v-container fluid class="d-flex flex-column ps-12 pt-5">
-      <v-row class="d-flex flex-column">
-        <v-banner class="d-flex justify-center text-subtitle-1 text-center pb-0 font-weight-medium" text="Discover PDF-Frame, the JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue and Nuxt for dynamic graphical content creation." border=0>
-            
+  <v-container fluid class="d-flex flex-column pl-12 pr-12 pt-5">
+      <v-row class="d-flex flex-column justify-top justify-space-around">
+        <v-banner class="d-flex justify-center text-subtitle-1 text-center pb-0 font-weight-medium main-banner" justify="space-around" :stacked="false"  position="sticky" border=0>
+            <template v-slot:text class="justify-center">
+              Discover PDF-Frame, the JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue and Nuxt for dynamic graphical content creation.
+            </template>
         </v-banner>
         <v-banner class="d-flex justify-center text-subtitle-1 text-center pt-2 main-sub-title font-weight-medium" position="sticky" border=0>
             Powered By <v-btn variant="tonal" href="https://github.com/I2Djs/I2Djs" color="pink-accent-3" class="rounded-pill ml-2" density="compact"> I2Djs </v-btn>
         </v-banner>
       </v-row>
-      <v-row class="fill-width ps-10">
+      <v-row class="fill-width px-10" justify="space-around">
           <v-select
             label="Select"
             :items="exampleList"
@@ -120,18 +122,30 @@ const editorInit = (editor) => {
           > </v-select>
       </v-row>
       <v-row justify="space-around" >
-          <v-banner class="d-flex justify-center text-center text-subtitle-1 example-title" lines="one" :stacked="false" position="sticky">
-            Try PDF-Frame vue examples on - 
-            <template v-slot:actions>
-              <v-btn class="rounded-pill ml-2" density="compact" color="deep-purple-darken-4" prepend-icon="mdi-pencil" variant="tonal" href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase">Stackblitz</v-btn>
-            </template>
+          <v-banner class="d-flex justify-center align-center text-center text-subtitle-1 example-title" lines="one" :stacked="false" border=0 position="sticky">
+            <!-- <template v-slot:text class="justify-center">
+              
+            </template> -->
+            Try examples -  <v-btn class="rounded-pill ml-2" color="deep-purple-darken-4" prepend-icon="mdi-pencil" variant="tonal" href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase">Stackblitz</v-btn>
+            <!-- <template v-slot:actions>
+              
+            </template> -->
           </v-banner>
       </v-row>
-      <v-row class="fill-height fill-width justify-space-around mb-5" >
+      <v-row class="fill-width justify-space-around mb-5" style="min-height: 600px;" >
+          <v-col
+              cols="12"
+              md="7"
+              :class=" mdAndUp ? 'order-2' : 'order-1'"
+              style="min-height: 300px;"
+            >
+            <component :is="selectedExample"></component>
+          </v-col>
           <v-col
               cols="12"
               md="5"
-              :class="smAndDown ? 'order-2' : 'order-1'"
+              :class="mdAndUp ? 'order-1' : 'order-2'"
+              style="min-height: 300px;"
             >
               <v-ace-editor
                 v-model:value="rawTemplate"
@@ -142,13 +156,7 @@ const editorInit = (editor) => {
                 @init="editorInit" />
             <!-- </div> -->
           </v-col>
-          <v-col
-              cols="12"
-              md="7"
-              :class=" smAndDown ? 'order-1' : 'order-2'"
-            >
-            <component :is="selectedExample"></component>
-          </v-col>
+          
         <!-- </div> -->
       </v-row>
   </v-container>
@@ -204,6 +212,7 @@ html, body, #__nuxt {
 .canvasParentContainer {
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
 .pdfContainer {
@@ -222,5 +231,9 @@ html, body, #__nuxt {
 
 .example-title {
   color: #5E35B1 !important;
+}
+
+.main-banner .v-banner-text {
+  padding-inline-end: 0px;
 }
 </style>

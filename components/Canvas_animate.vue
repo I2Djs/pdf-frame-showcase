@@ -29,8 +29,7 @@
         :y="0"
         :width="width"
         :height="height"
-        rx=50
-        ry=50
+        rx=20 ry=20
         :style="{ fillStyle: 'grad(grad3)' }"
       />
     <i-g :transform="{ translate: [width * 0.1, 0] }">

@@ -21,7 +21,7 @@
         ]"
       />
       <i-rect
-        :x="0" :y="0" :width="width" :height="height" rx=50 ry=50
+        :x="0" :y="0" :width="width" :height="height" rx=20 ry=20
         :style="{ fillStyle: 'grad(grad3)' }"
       />
       <i-g class="heads" :style="{
