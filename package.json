@@ -28,5 +28,6 @@
   "devDependencies": {
     "vite-plugin-vuetify": "^2.0.3",
     "vuetify": "^3.5.10"
-  }
+  },
+  "version": "0.1.0"
 }
