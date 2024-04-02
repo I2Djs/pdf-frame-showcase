@@ -1,13 +1,14 @@
 {
-  "name": "nuxt-app",
-  "private": true,
+  "name": "@i2d/pdf-frame-showcase",
+  "private": false,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "postversion": "git tag pdf-frame-showcase-$(node -p -e \"require('./package.json').version\") && git push origin pdf-frame-showcase-$(node -p -e \"require('./package.json').version\") && git tag -d v$(node -p -e \"require('./package.json').version\") && git push origin :refs/tags/v$(node -p -e \"require('./package.json').version\")"
   },
   "dependencies": {
     "@i2d/nuxt-pdf-frame": "^0.0.4",
