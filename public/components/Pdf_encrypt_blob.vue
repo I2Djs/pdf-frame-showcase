@@ -11,16 +11,6 @@
   }
   let encry = {
     userPassword: "pdfframe"
-    // ownerPassword:
-    // permissions: {
-        // printing:,
-        // modifying:,
-        // copying:,
-        // annotating:,
-        // fillingForms:,
-        // contentAccessibility:,
-        // documentAssembly:
-    // }
   };
   let info = {
     title: "PDF-Frame Blob example",
@@ -43,7 +33,8 @@
       :height="841"
       :config="config"
       :encrypt="encry"
-      @on-update="updateExternalIframe"
+      :needOnUpdated="true"
+      @on-updated="updateExternalIframe"
       :encryption="encry"
       :info="info"    >
       <i-page-template id="temp-1">

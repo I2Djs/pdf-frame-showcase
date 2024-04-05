@@ -17,12 +17,14 @@ export default defineNuxtConfig({
     //...
   ],
   vue: {
-        compilerOptions: {
-          // treat any tag that starts with ion- as custom elements
-          isCustomElement: tag => tag.startsWith('i-')
-        },
+        // compilerOptions: {
+        //   isCustomElement: tag => tag.startsWith('i-')
+        // },
         template: {
           transformAssetUrls,
+          // compilerOptions: {
+          //   isCustomElement: tag => tag.startsWith('i-')
+          // }
         },
     }
 })

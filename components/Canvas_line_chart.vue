@@ -1,5 +1,6 @@
 <template>
-        <pdf-frame type="canvas" @on-ready="onLayerReady" @on-resize="onLayerResize">
+    <div class="chart-container">
+        <pdf-frame type="canvas"  @on-ready="onLayerReady" @on-resize="onLayerResize">
             <i-group class="backGround">
                 <i-linearGradient
                     id="grad3" :x1="0" :y1="0" :x2="100" :y2="100"
@@ -69,6 +70,7 @@
                 </i-group>
             </i-group>
         </pdf-frame>
+    </div>
 </template>
 
 <script setup>

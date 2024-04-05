@@ -11,8 +11,7 @@
     "postversion": "git tag pdf-frame-showcase-$(node -p -e \"require('./package.json').version\") && git push origin pdf-frame-showcase-$(node -p -e \"require('./package.json').version\") && git tag -d v$(node -p -e \"require('./package.json').version\") && git push origin :refs/tags/v$(node -p -e \"require('./package.json').version\")"
   },
   "dependencies": {
-    "@i2d/nuxt-pdf-frame": "^0.0.4",
-    "@i2d/pdf-frame-vue": "^2.1.1",
+    "@i2d/nuxt-pdf-frame": "^0.2.0",
     "@mdi/font": "^7.4.47",
     "@mdi/js": "^7.4.47",
     "@nuxt/content": "^2.12.1",
@@ -27,7 +26,8 @@
   },
   "devDependencies": {
     "vite-plugin-vuetify": "^2.0.3",
-    "vuetify": "^3.5.10"
+    "vuetify": "^3.5.10",
+    "vuetify-nuxt-module": "^0.13.1"
   },
   "version": "0.1.0"
 }

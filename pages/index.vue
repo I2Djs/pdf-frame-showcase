@@ -103,7 +103,7 @@ const editorInit = (editor) => {
       <v-row class="flex-column justify-top justify-space-around h-auto fill-height">
         <v-banner class="justify-center d-flex text-subtitle-1 text-center font-weight-medium main-banner" justify="space-around" :stacked="true"  position="sticky" border=0>
             <template v-slot:text>
-              Discover PDF-Frame, the JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue and Nuxt for dynamic graphical content creation.
+              Discover PDF-Frame, the JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue3 and Nuxt3 for dynamic graphical content creation.
             </template>
         </v-banner>
         <v-banner density="compact" class="d-flex justify-center text-subtitle-1 text-center pt-2 main-sub-title font-weight-medium" border=0>
