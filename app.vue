@@ -9,17 +9,17 @@
           <v-app-bar-title v-if="!smAndDown"><label>PDF-Frame</label></v-app-bar-title>
           <v-spacer></v-spacer>
           <div class="action-btns d-flex pr-10">
-            <v-btn density="comfortable" href="https://github.com/I2Djs/pdf-frame" color="deep-purple-darken-1" rounded="xs" size="x" :slim="true">
+            <v-btn density="comfortable" href="https://github.com/I2Djs/pdf-frame" color="purple-darken-3" rounded="xs" size="x" :slim="true">
               <v-icon size="x-large">mdi-github</v-icon>
               PDF-Frame
             </v-btn>
 
-            <v-btn v-if="!smAndDown" density="comfortable" href="https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue" color="purple-accent-4" rounded="xs" size="x" :slim="true">
+            <v-btn v-if="!smAndDown" density="comfortable" href="https://github.com/I2Djs/pdf-frame/wiki/pdf%E2%80%90frame%E2%80%90vue" color="purple-darken-3" rounded="xs" size="x" :slim="true">
               <v-icon size="x-large">mdi-school-outline</v-icon>
               Guide
             </v-btn>
 
-            <v-btn v-if="!smAndDown" density="comfortable" href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase" color="deep-purple-darken-1" rounded="xs" size="x" :slim="true">
+            <v-btn v-if="!smAndDown" density="comfortable" href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase" color="purple-darken-3" rounded="xs" size="x" :slim="true">
               <v-icon size="x-large">mdi-code-tags</v-icon>
               Examples
             </v-btn>

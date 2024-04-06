@@ -1,6 +1,6 @@
 <template>
     <div class="chart-container">
-        <pdf-frame type="canvas"  @on-ready="onLayerReady" @on-resize="onLayerResize">
+        <pdf-frame type="pdf"  @on-ready="onLayerReady" @on-resize="onLayerResize">
             <i-group class="backGround">
                 <i-linearGradient
                     id="grad3" :x1="0" :y1="0" :x2="100" :y2="100"
@@ -41,9 +41,9 @@
                         <i-text
                             v-if="item.value !== 0"
                             class="count"
-                            :x="-2"
+                            :x="-10"
                             :y="-15"
-                            :style="{ fillStyle: '#ffffff', font: '9px', textAlign:'center' }"
+                            :style="{ fillStyle: '#ffffff', font: '9px' }"
                             :text="item.value"></i-text>
                     </i-group>
                 </i-group>

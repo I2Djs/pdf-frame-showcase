@@ -12,6 +12,8 @@ import PDf_encrypt from './../components/Pdf_encrypt_blob.vue';
 import Canvas_events from './../components/Canvas_events.vue';
 import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.vue';
 import Canvas_line_chart from './../components/Canvas_line_chart.vue';
+import Canvas_geomap from './../components/Canvas_geomap.vue';
+import Pdf_geomap from './../components/Pdf_geomap.vue';
 import { useDisplay } from 'vuetify'
   
   const { mdAndUp } = useDisplay()
@@ -65,6 +67,14 @@ import { useDisplay } from 'vuetify'
     title: 'Canvas: Events',
     component: Canvas_events,
     file: 'Canvas_events.vue'
+  }, {
+    title: 'Canvas: Geo Map Rendering',
+    component: Canvas_geomap,
+    file: 'Canvas_geomap.vue'
+  }, {
+    title: 'PDF: Geo Map Rendering',
+    component: Pdf_geomap,
+    file: 'PDf_geomap.vue'
   }];
 
 
@@ -100,37 +110,33 @@ const editorInit = (editor) => {
 
 <template>
   <v-container fluid class="d-flex flex-column pl-12 pr-12 pt-5" style="overflow-y: auto;">
-      <v-row class="flex-column justify-top justify-space-around h-auto fill-height">
-        <v-banner class="justify-center d-flex text-subtitle-1 text-center font-weight-medium main-banner" justify="space-around" :stacked="true"  position="sticky" border=0>
+      <v-row class="fill-width px-10">
+        <v-banner class="justify-center d-flex text-subtitle-1 text-center font-weight-medium main-banner py-0" justify="space-around" :stacked="true"  position="sticky" border=0>
             <template v-slot:text>
               Discover PDF-Frame, the JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue3 and Nuxt3 for dynamic graphical content creation.
             </template>
         </v-banner>
+      </v-row>
+      <v-row>
         <v-banner density="compact" class="d-flex justify-center text-subtitle-1 text-center pt-2 main-sub-title font-weight-medium" border=0>
             Powered By <v-btn variant="tonal" href="https://github.com/I2Djs/I2Djs" color="pink-accent-3" class="rounded-pill ml-2" density="compact"> I2Djs </v-btn>
         </v-banner>
       </v-row>
       <v-row class="fill-width px-10" justify="space-around">
-          <v-select
-            label="Select"
+          <v-autocomplete
+            density="compact"
+            label="Select Example"
             :items="exampleList"
              v-model="selectedValue"
              hint="Select example from the list"
              persistent-hint
+             class="select-example"
             :item-props="(d) => d"
-            variant="outlined"
-            :density="mdAndUp ? 'default':'compact'"
-          > </v-select>
+          > </v-autocomplete>
       </v-row>
       <v-row justify="space-around" >
-          <v-banner class="d-flex justify-center align-center text-center text-subtitle-1 example-title pt-0" lines="one" :stacked="false" border=0 position="sticky">
-            <!-- <template v-slot:text class="justify-center">
-              
-            </template> -->
-            Try Examples -  <v-btn class="rounded-pill ml-2" color="light-blue-darken-4" prepend-icon="mdi-pencil"  href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase">Stackblitz</v-btn>
-            <!-- <template v-slot:actions>
-              
-            </template> -->
+          <v-banner class="pt-4 justify-center align-center text-center text-subtitle-1 example-title pt-0" lines="one" density="compact" border=0 position="sticky">
+            Try Examples on:  <v-btn class="ml-2" color="light-blue-darken-4" prepend-icon="mdi-pencil"  href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase">Stackblitz</v-btn>
           </v-banner>
       </v-row>
       <v-row class="fill-width justify-space-around mb-5" style="min-height: 600px; overflow-y: auto;" >
@@ -238,5 +244,9 @@ html, body, #__nuxt {
 
 .main-banner .v-banner-text {
   padding-inline-end: 0px !important;
+}
+
+.select-example .v-input__details {
+  display: none;
 }
 </style>
