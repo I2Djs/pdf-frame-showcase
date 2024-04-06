@@ -1,11 +1,12 @@
 <template>
+  <div class="canvasParentContainer">
     <pdfFrame
       id="canvasBasicContainer"
       type="canvas"
       @on-ready="onInstanceReady"
       @on-resize="onInstanceResize"
     >
-    <i-linearGradient
+      <i-linearGradient
         id="grad3" :x1="0" :y1="0" :x2="100" :y2="100"
         :colorStops="[
           {
@@ -19,12 +20,9 @@
           },
         ]"
       />
-    <i-rect :x="0" :y="0" :width="width" :height="height" rx=20 ry=20
+      <i-rect :x="0" :y="0" :width="width" :height="height" rx=50 ry=50
         :style="{ fillStyle: 'grad(grad3)' }"
       />
-    <i-g :transform="{
-      scale: [viewportScaleX, viewportScaleY]
-    }">
       <i-linearGradient
         id="grad4" :x1="0" :y1="0" :x2="0" :y2="100"
         :colorStops="[
@@ -67,32 +65,28 @@
         <i-text
           :x="0"
           :y="300"
-          :width="800"
+          :width="width - 300"
           align="justify"
           text="Pdf-frame is a client-side JavaScript web framework designed for PDF/Canvas rendering that leverages a declarative HTML syntax for efficient graphical content definition. It is built on the i2djs framework and currently supports PDF and Canvas formats. Pdf-frame features SVG-like syntax and semantics for easy geometrical shape definitions, ensuring consistent rendering across both PDF and Canvas. It automatically handles content overflow by creating new pages, supports multi-page PDFs, and allows for animations and events in canvas contexts. The framework also provides components for integration with popular frameworks like Vue and Nuxt, with ongoing work for React support."
           :style="{ fillStyle: '#ffffff', align: 'justify', font: '18px Courier' }"
         />
       </i-g>
-      </i-g>
     </pdfFrame>
+  </div>
 </template>
 
 <script setup>
   import { ref, watch,onMounted } from "vue";
   let t = ref(0);
+  let loopCount = 2000;
+  let runningCount = 0;
+
   let width = ref(0);
   let height = ref(0);
-  let viewportScaleX = ref(0);
-  let viewportScaleY = ref(0);
 
   function onInstanceResize(data) {
     width.value = data.width;
     height.value = data.height;
-
-    let sx = (width.value / 1000) > 1 ? 1 : (width.value / 1000);
-    let sy = (height.value / 800) > 1 ? 1 : (height.value / 800);
-
-    viewportScaleX = viewportScaleY = Math.min(sx, sy);
   }
 
   function onInstanceReady (layer) {

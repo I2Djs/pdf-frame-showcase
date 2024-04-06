@@ -17,14 +17,8 @@ export default defineNuxtConfig({
     //...
   ],
   vue: {
-        // compilerOptions: {
-        //   isCustomElement: tag => tag.startsWith('i-')
-        // },
         template: {
           transformAssetUrls,
-          // compilerOptions: {
-          //   isCustomElement: tag => tag.startsWith('i-')
-          // }
         },
     }
 })
