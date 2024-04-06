@@ -3,7 +3,6 @@
       id="canvasContainer"
       type="pdf"
       @on-ready="onInstanceReady"
-      
     >
       <i-g
         :bbox= 'false'
