@@ -136,7 +136,7 @@ const editorInit = (editor) => {
       </v-row>
       <v-row justify="space-around" >
           <v-banner class="pt-4 justify-center align-center text-center text-subtitle-1 example-title pt-0" lines="one" density="compact" border=0 position="sticky">
-            Try Examples on:  <v-btn class="ml-2" color="light-blue-darken-4" prepend-icon="mdi-pencil"  href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase">Stackblitz</v-btn>
+            Try Examples on:  <v-btn class="ml-2" color="light-blue-darken-4" prepend-icon="mdi-pencil"  href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase/tree/stackBlitzShowcase">Stackblitz</v-btn>
           </v-banner>
       </v-row>
       <v-row class="fill-width justify-space-around mb-5" style="min-height: 600px; overflow-y: auto;" >
