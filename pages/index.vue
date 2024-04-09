@@ -74,7 +74,7 @@ import { useDisplay } from 'vuetify'
   }, {
     title: 'PDF: Geo Map Rendering',
     component: Pdf_geomap,
-    file: 'PDf_geomap.vue'
+    file: 'Pdf_geomap.vue'
   }];
 
 
