@@ -17,60 +17,46 @@ import Pdf_geomap from './../components/Pdf_geomap.vue';
   
 let exampleList = [{
     title: 'Canvas: Basic Rendering',
-    component: Canvas_example,
-    file: 'Canvas_example.vue'
+    component: Canvas_example
   }, {
     title: 'PDF: Basic Rendering',
-    component: Pdf_example,
-    file: 'Pdf_example.vue'
+    component: Pdf_example
   }, {
     title: 'Canvas: Line Chart; Resizable',
-    component: Canvas_line_chart,
-    file: 'Canvas_line_chart.vue'
+    component: Canvas_line_chart
   }, {
     title: 'PDF: Table rendering; Auto Pagination',
-    component: PDf_table,
-    file: 'Pdf_table_test.vue'
+    component: PDf_table
   }, {
     title: 'Canvas: Path Animaton',
-    component: Canvas_path_animation,
-    file: 'Canvas_path_animation.vue'
+    component: Canvas_path_animation
   }, {
     title: 'Canvas: Path Morph',
-    component: Canvas_path_morph,
-    file: 'Canvas_path_morph.vue'
+    component: Canvas_path_morph
   }, {
     title: 'PDF: Custom Fonts',
-    component: Pdf_custom_fonts,
-    file: 'Pdf_custom_fonts.vue'
+    component: Pdf_custom_fonts
   }, {
     title: 'Canvas: Tadpole Animation',
-    component: Canvas_tadpole_animation,
-    file: 'Canvas_tadpole_animation.vue'
+    component: Canvas_tadpole_animation
   }, {
     title: 'Canvas: Helix Animation',
-    component: Canvas_Helix_animation,
-    file: 'Canvas_helix_animation.vue'
+    component: Canvas_Helix_animation
   }, {
     title: 'PDF: Encryption',
-    component: PDf_encrypt,
-    file: 'Pdf_encrypt_blob.vue'
+    component: PDf_encrypt
   }, {
     title: 'Canvas: Rect Animation',
-    component: Canvas_rect_animation,
-    file: 'Canvas_animate.vue'
+    component: Canvas_rect_animation
   }, {
     title: 'Canvas: Events',
-    component: Canvas_events,
-    file: 'Canvas_events.vue'
+    component: Canvas_events
   }, {
     title: 'Canvas: GeoMap',
-    component: Canvas_geomap,
-    file: 'Canvas_geomap.vue'
+    component: Canvas_geomap
   }, {
     title: 'PDF: GeoMap',
-    component: Pdf_geomap,
-    file: 'Pdf_geomap.vue'
+    component: Pdf_geomap
   }];
 
 
