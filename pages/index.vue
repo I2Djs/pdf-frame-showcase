@@ -102,7 +102,7 @@ import { useDisplay } from 'vuetify'
         title: selectedValue.value
       },
     })
-  }, { immediate: true });
+  });
 
   async function loadComponent(selectedEx) {
     let selectedObj =  exampleList.filter((d)=>{
