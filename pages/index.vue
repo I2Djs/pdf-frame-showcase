@@ -1,10 +1,12 @@
 <script setup>
 import { watch, shallowRef, ref } from 'vue';
+import { useRoute } from 'vue-router'
 import Canvas_example from './../components/Canvas_example.vue';
 import Canvas_path_animation from './../components/Canvas_path_animation.vue';
 import Canvas_path_morph from './../components/Canvas_path_morph.vue';
 import Pdf_example from './../components/Pdf_example.vue';
 import Pdf_custom_fonts from './../components/Pdf_custom_fonts.vue';
+import Pdf_language_fonts from './../components/Pdf_language_fonts.vue';
 import Canvas_Helix_animation from './../components/Canvas_helix_animation.vue';
 import Canvas_rect_animation from './../components/Canvas_animate.vue';
 import PDf_table from './../components/Pdf_table_test.vue';
@@ -14,6 +16,11 @@ import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.v
 import Canvas_line_chart from './../components/Canvas_line_chart.vue';
 import Canvas_geomap from './../components/Canvas_geomap.vue';
 import Pdf_geomap from './../components/Pdf_geomap.vue';
+
+const router = useRouter();
+const route = useRoute();
+
+console.log(route.query.title);
   
 let exampleList = [{
     title: 'Canvas: Basic Rendering',
@@ -36,6 +43,9 @@ let exampleList = [{
   }, {
     title: 'PDF: Custom Fonts',
     component: Pdf_custom_fonts
+  }, {
+    title: 'PDF: Language Fonts',
+    component: Pdf_language_fonts 
   }, {
     title: 'Canvas: Tadpole Animation',
     component: Canvas_tadpole_animation
@@ -63,9 +73,28 @@ let exampleList = [{
   let selectedValue = shallowRef('Canvas: Basic Rendering');
   let selectedExample = shallowRef('');
 
+  watch(
+    () => route.query.title,
+    title => {
+      console.log(title);
+      loadComponent(title);
+    }, { immediate: true }
+  )
+
   watch(selectedValue, async () => {
+    console.log(selectedValue.value);
+    router.push({
+      path: '/',
+      query: {
+        title: selectedValue.value
+      },
+    })
+  }, { immediate: true });
+
+
+  function loadComponent(selectedEx) {
     let selectedObj =  exampleList.filter((d)=>{
-      return d.title === selectedValue.value;
+      return d.title === selectedEx;
     })[0];
 
     if (!selectedObj) {
@@ -73,21 +102,20 @@ let exampleList = [{
     }
 
     selectedExample.value = selectedObj.component;
-
-  }, { immediate: true });
+  }
 
 </script>
 
 <template>
     <div class="container">
         <div class="exampleSelector">
-          <v-select
+          <v-autocomplete
             label="Select"
             :items="exampleList"
              v-model="selectedValue"
             :item-props="(d) => d"
             variant="outlined"
-          > </v-select>
+          > </v-autocomplete>
         </div>
         <div class="editorParentContainer">
             <component :is="selectedExample"></component>

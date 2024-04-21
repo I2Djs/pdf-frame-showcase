@@ -63,13 +63,13 @@
           />
       </i-page-template>
       <i-page p-template="temp-1">
-        
         <i-text 
           :x="0"
           :y="50"
           text="PDF-frame"
           :style="{ fill: '#ffffff',textAlign:'center', font: '70px Chapbook' }"
         />
+
         <i-text 
           :x="30"
           :y="150"
