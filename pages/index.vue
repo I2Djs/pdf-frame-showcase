@@ -5,6 +5,7 @@ import Canvas_path_animation from './../components/Canvas_path_animation.vue';
 import Canvas_path_morph from './../components/Canvas_path_morph.vue';
 import Pdf_example from './../components/Pdf_example.vue';
 import Pdf_custom_fonts from './../components/Pdf_custom_fonts.vue';
+import Pdf_language_fonts from './../components/Pdf_language_fonts.vue';
 import Canvas_Helix_animation from './../components/Canvas_helix_animation.vue';
 import Canvas_rect_animation from './../components/Canvas_animate.vue';
 import PDf_table from './../components/Pdf_table_test.vue';
@@ -18,6 +19,8 @@ import { useDisplay } from 'vuetify'
   
   const { mdAndUp } = useDisplay()
   let rawTemplate = shallowRef('');
+  const router = useRouter();
+  const route = useRoute();
   
   let exampleList = [{
     title: 'Canvas: Basic Rendering',
@@ -47,6 +50,10 @@ import { useDisplay } from 'vuetify'
     title: 'PDF: Custom Fonts',
     component: Pdf_custom_fonts,
     file: 'Pdf_custom_fonts.vue'
+  }, {
+    title: 'PDF: Language Fonts',
+    component: Pdf_language_fonts,
+    file: 'Pdf_language_fonts.vue'
   }, {
     title: 'Canvas: Tadpole Animation',
     component: Canvas_tadpole_animation,
@@ -81,12 +88,34 @@ import { useDisplay } from 'vuetify'
   let selectedValue = shallowRef('Canvas: Basic Rendering');
   let selectedExample = shallowRef('');
 
-  watch(selectedValue, async () => {
+  watch(
+    () => route.query.title,
+    title => {
+      loadComponent(title);
+    }, { immediate: true }
+  )
+
+  watch(selectedValue, () => {
+    router.push({
+      path: '/',
+      query: {
+        title: selectedValue.value
+      },
+    })
+  }, { immediate: true });
+
+  async function loadComponent(selectedEx) {
     let selectedObj =  exampleList.filter((d)=>{
-      return d.title === selectedValue.value;
+      return d.title === selectedEx;
     })[0];
 
     if (!selectedObj) {
+      router.push({
+        path: '/',
+        query: {
+          title: 'Canvas: Basic Rendering'
+        },
+      })
       return;
     }
 
@@ -95,10 +124,7 @@ import { useDisplay } from 'vuetify'
     let response = await $fetch("/components/"+selectedObj.file);
     response = await response.text();
     rawTemplate.value = response;
-
-  }, { immediate: true });
-
-  const { mobile } = useDisplay()
+  }
 
 
 const editorInit = (editor) => {
