@@ -32,8 +32,24 @@
   </v-app>
   </NuxtLayout>
 </template>
-<script setup>
+<script setup lang="ts">
   import { useDisplay } from 'vuetify'
+
+  useHead({
+    title: 'PDF-Frame: JavaScript Web Framework for Client-Side PDF/Canvas Rendering with Vue.js and Nuxt.js Support',
+    meta:[{
+      name: "description", content: "PDF-Frame is a JavaScript web framework for client-side PDF/Canvas rendering. With its declarative HTML syntax and semantics, it offers an easy and efficient way to define PDF/Canvas graphical content. It follows syntax similar to SVG's and provides component support for popular frameworks like Vue.js, Nuxt.js, and React (work in progress). Powered by i2djs, PDF-Frame presently supports rendering outputs as PDF and Canvas formats."
+    }]
+  })
+
+  useSeoMeta({
+    title: 'PDF-Frame: JavaScript Web Framework for Client-Side PDF/Canvas Rendering with Vue.js and Nuxt.js Support',
+    ogTitle: 'PDF-Frame: JavaScript Web Framework for Client-Side PDF/Canvas Rendering with Vue.js and Nuxt.js Support',
+    description: "PDF-Frame is a JavaScript web framework for client-side PDF/Canvas rendering. With its declarative HTML syntax and semantics, it offers an easy and efficient way to define PDF/Canvas graphical content. It follows syntax similar to SVG's and provides component support for popular frameworks like Vue.js, Nuxt.js, and React (work in progress). Powered by i2djs, PDF-Frame presently supports rendering outputs as PDF and Canvas formats.",
+    ogDescription: "PDF-Frame is a JavaScript web framework for client-side PDF/Canvas rendering. With its declarative HTML syntax and semantics, it offers an easy and efficient way to define PDF/Canvas graphical content. It follows syntax similar to SVG's and provides component support for popular frameworks like Vue.js, Nuxt.js, and React (work in progress). Powered by i2djs, PDF-Frame presently supports rendering outputs as PDF and Canvas formats.",
+    ogImage: "https://raw.githubusercontent.com/I2Djs/pdf-frame/main/assets/pdf-frame.svg",
+
+  })
   
   const { smAndDown } = useDisplay()
 </script>
