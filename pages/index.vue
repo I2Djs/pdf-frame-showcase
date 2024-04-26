@@ -89,7 +89,7 @@ import { useDisplay } from 'vuetify'
     component: Pdf_geomap,
     file: 'Pdf_geomap.vue'
   }, {
-    title: 'PDF: Blobs',
+    title: 'PDF: Blob',
     component: Pdf_blob,
     file: 'Pdf_blob.vue'
   }];
