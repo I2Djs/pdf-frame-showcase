@@ -15,6 +15,8 @@ import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.v
 import Canvas_line_chart from './../components/Canvas_line_chart.vue';
 import Canvas_geomap from './../components/Canvas_geomap.vue';
 import Pdf_geomap from './../components/Pdf_geomap.vue';
+import Pdf_line_chart from './../components/Pdf_line_chart.vue';
+import Pdf_blob from './../components/Pdf_blob.vue';
 import { useDisplay } from 'vuetify'
   
   const { mdAndUp } = useDisplay()
@@ -34,6 +36,10 @@ import { useDisplay } from 'vuetify'
     title: 'Canvas: Line Chart; Resizable',
     component: Canvas_line_chart,
     file: 'Canvas_line_chart.vue'
+  },{
+    title: 'PDF: Line Chart',
+    component: Pdf_line_chart,
+    file: 'Pdf_line_chart.vue'
   }, {
     title: 'PDF: Table rendering; Auto Pagination',
     component: PDf_table,
@@ -82,6 +88,10 @@ import { useDisplay } from 'vuetify'
     title: 'PDF: Geo Map Rendering',
     component: Pdf_geomap,
     file: 'Pdf_geomap.vue'
+  }, {
+    title: 'PDF: Blobs',
+    component: Pdf_blob,
+    file: 'Pdf_blob.vue'
   }];
 
 
@@ -92,6 +102,7 @@ import { useDisplay } from 'vuetify'
     () => route.query.title,
     title => {
       loadComponent(title);
+      selectedValue.value = title;
     }, { immediate: true }
   )
 

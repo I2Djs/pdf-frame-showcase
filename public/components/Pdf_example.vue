@@ -137,9 +137,6 @@
           </i-group>
         </i-group>
       </i-page>
-      <i-page p-template="temp-1">
-        
-      </i-page>
     </pdfFrame>
   </div>
 </template>

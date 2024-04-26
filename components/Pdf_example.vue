@@ -1,6 +1,3 @@
-<script setup>
-</script>
-
 <template>
     <pdfFrame
       id="samplePdf"
@@ -16,17 +13,17 @@
             :x2="100"
             :y2="100"
             :colorStops="[{
-                             color: '#023c73',
-                             offset: 0,
-                           },
-                           {
-                             color: '#5f0b9c',
-                             offset: 50,
-                           },
-                           {
-                             color: '#b814c4',
-                             offset: 100,
-                           }]"
+                         color: '#023c73',
+                         offset: 0,
+                       },
+                       {
+                         color: '#5f0b9c',
+                         offset: 50,
+                       },
+                       {
+                         color: '#b814c4',
+                         offset: 100,
+                       }]"
           />
           <i-rect
             :x="0"
@@ -135,9 +132,6 @@
               <i-circle :cx="150" :cy="150" :r="75" :style="{ fillStyle:'#0000ff' }" />
           </i-group>
         </i-group>
-      </i-page>
-      <i-page p-template="temp-1">
-        
       </i-page>
     </pdfFrame>
 </template>

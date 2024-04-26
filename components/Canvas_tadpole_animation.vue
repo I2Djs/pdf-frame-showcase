@@ -58,7 +58,7 @@
 </template>
 <script setup>
 import { ref, onMounted } from 'vue';
-const n = 500;
+const n = 250;
 const v = 2;
 const m = 12;
 let width = ref(0);

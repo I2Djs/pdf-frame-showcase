@@ -1,31 +1,14 @@
 <template>
-    <div class="chart-container">
-        <pdf-frame type="canvas"  @on-ready="onLayerReady" @on-resize="onLayerResize">
-            <i-group class="backGround">
-                <i-linearGradient
-                    id="grad3" :x1="0" :y1="0" :x2="100" :y2="100"
-                    :colorStops="[
-                      {
-                        color: '#023c73', offset: 0,
-                      },
-                      {
-                        color: '#5f0b9c', offset: 50,
-                      },
-                      {
-                        color: '#b814c4', offset: 100,
-                      },
-                    ]"
-                  />
-                  <i-rect :x="0" :y="0" :width="width" :height="height" rx=20 ry=20
-                    :style="{ fillStyle: 'grad(grad3)' }"
-                  />
-              </i-group>
-              
+        <pdf-frame 
+        :width="595"
+        :height="841"
+        type="pdf"  
+        @on-ready="onLayerReady">
             <i-group :transform="chartTransform">
                 <i-path
                     :d="dataPoints"
                     :style="{
-                        strokeStyle: '#ebf2ff', lineWidth: 2,
+                        strokeStyle: '#037C6E', lineWidth: 2,
                     }"></i-path>
                 <i-group class="circleGroup">
                     <i-group
@@ -37,13 +20,13 @@
                             :cx="-2"
                             :cy="0"
                             :r="4"
-                            :style="{ fillStyle: '#ffffff' }"></i-circle>
+                            :style="{ fillStyle: '#037C6E' }"></i-circle>
                         <i-text
                             v-if="item.value !== 0"
                             class="count"
                             :x="-10"
                             :y="-15"
-                            :style="{ fillStyle: '#ffffff', font: '9px' }"
+                            :style="{ fillStyle: '#030303', font: '9px' }"
                             :text="item.value"></i-text>
                     </i-group>
                 </i-group>
@@ -59,18 +42,17 @@
                                 return tick % 5 === 0 ? 6 : 3;
                             }
                         "
-                        :style="{ strokeStyle: '#ffffff' }"></i-line>
+                        :style="{ strokeStyle: '#030303' }"></i-line>
                     <i-text
                         v-for="(ticktext, index) in axisTicksTickText"
                         :key="index"
                         :x="ticktext.xPos - 20"
                         :y="10"
                         :text="ticktext.time"
-                        :style="{ fillStyle: '#ffffff', font: '9px Arial' }"></i-text>
+                        :style="{ fillStyle: '#030303', font: '9px Arial' }"></i-text>
                 </i-group>
             </i-group>
         </pdf-frame>
-    </div>
 </template>
 
 <script setup>
@@ -83,11 +65,15 @@ const timeFormat_ = timeFormat("%b %d %H:%M");
 const timeScale = scaleTime();
 const heightScale = scaleLinear();
 const tickWidth = 10;
+const chartDim = {
+    height: 200,
+    width: 500
+}
 const padding = {
     top: 40,
     bottom: 40,
-    left: 20,
-    right: 40,
+    left: 0,
+    right: 0,
 };
 let width = ref(0);
 let height = ref(0);
@@ -96,7 +82,7 @@ let axisTransform = ref({
     translate: [0, 0]
 });
 let chartTransform = ref({
-    translate: [0, 0]
+    translate: [50, 50]
 });
 
 const lineInstance = line()
@@ -123,15 +109,9 @@ function onLayerReady(layer) {
     renderData();
 }
 
-function onLayerResize(layer) {
-    intializeChart(layer);
-    updatePolyline();
-    updateAxis();
-}
-
 function intializeChart(layer) {
-    width.value = layer.width;
-    height.value = layer.height;
+    width.value = chartDim.width;
+    height.value = chartDim.height;
     timeScale.range([padding.left, width.value - padding.right - padding.left]);
     heightScale.range([1, height.value - padding.top - padding.bottom]);
 
@@ -141,10 +121,6 @@ function intializeChart(layer) {
 
     axisTransform.value = {
         translate: [padding.left , (height.value - padding.bottom)]
-    }
-
-    chartTransform.value = {
-        translate: [padding.left , 0]
     }
 }
 

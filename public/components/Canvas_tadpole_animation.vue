@@ -1,5 +1,4 @@
 <template>
-  <div class="canvasParentContainer">
     <pdfFrame id="tadpoleExample" type="canvas" @on-ready="onInstanceReady"
       @on-resize="onInstanceResize">
       <i-linearGradient
@@ -21,7 +20,7 @@
         ]"
       />
       <i-rect
-        :x="0" :y="0" :width="width" :height="height" rx=50 ry=50
+        :x="0" :y="0" :width="width" :height="height" rx=20 ry=20
         :style="{ fillStyle: 'grad(grad3)' }"
       />
       <i-g class="heads" :style="{
@@ -56,11 +55,10 @@
       </i-g>
     </i-g>
   </pdfFrame>
-  </div>
 </template>
 <script setup>
 import { ref, onMounted } from 'vue';
-const n = 500;
+const n = 250;
 const v = 2;
 const m = 12;
 let width = ref(0);
