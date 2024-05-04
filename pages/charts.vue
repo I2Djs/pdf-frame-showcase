@@ -1,22 +1,9 @@
 <script setup>
 import { watch, shallowRef, onMounted, ref } from 'vue';
-import Canvas_example from './../components/Canvas_example.vue';
-import Canvas_path_animation from './../components/Canvas_path_animation.vue';
-import Canvas_path_morph from './../components/Canvas_path_morph.vue';
-import Pdf_example from './../components/Pdf_example.vue';
-import Pdf_custom_fonts from './../components/Pdf_custom_fonts.vue';
-import Pdf_language_fonts from './../components/Pdf_language_fonts.vue';
-import Canvas_Helix_animation from './../components/Canvas_helix_animation.vue';
-import Canvas_rect_animation from './../components/Canvas_animate.vue';
-import PDf_table from './../components/Pdf_table.vue';
-import PDf_encrypt from './../components/Pdf_encrypt_blob.vue';
-import Canvas_events from './../components/Canvas_events.vue';
-import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.vue';
-import Canvas_line_chart from './../components/Canvas_line_chart.vue';
-import Canvas_geomap from './../components/Canvas_geomap.vue';
-import Pdf_geomap from './../components/Pdf_geomap.vue';
-import Pdf_line_chart from './../components/Pdf_line_chart.vue';
-import Pdf_blob from './../components/Pdf_blob.vue';
+import barChart from './../components/charts/barChart.vue';
+import multiLineChart from './../components/charts/multiLineChart.vue';
+import stepChart from './../components/charts/stepChart.vue';
+
 import { useDisplay } from 'vuetify'
   
   const { mdAndUp } = useDisplay()
@@ -25,77 +12,21 @@ import { useDisplay } from 'vuetify'
   const route = useRoute();
   
   let exampleList = [{
-    title: 'Canvas: Basic Rendering',
-    component: Canvas_example,
-    file: 'Canvas_example.vue'
+    title: 'Bar Chart',
+    component: barChart,
+    file: 'charts/barChart.vue'
   }, {
-    title: 'PDF: Basic Rendering',
-    component: Pdf_example,
-    file: 'Pdf_example.vue'
+    title: 'MultiLine Chart',
+    component: multiLineChart,
+    file: 'charts/multiLineChart.vue'
   }, {
-    title: 'Canvas: Line Chart; Resizable',
-    component: Canvas_line_chart,
-    file: 'Canvas_line_chart.vue'
-  },{
-    title: 'PDF: Line Chart',
-    component: Pdf_line_chart,
-    file: 'Pdf_line_chart.vue'
-  }, {
-    title: 'PDF: Table rendering; Auto Pagination',
-    component: PDf_table,
-    file: 'Pdf_table.vue'
-  }, {
-    title: 'Canvas: Path Animaton',
-    component: Canvas_path_animation,
-    file: 'Canvas_path_animation.vue'
-  }, {
-    title: 'Canvas: Path Morph',
-    component: Canvas_path_morph,
-    file: 'Canvas_path_morph.vue'
-  }, {
-    title: 'PDF: Custom Fonts',
-    component: Pdf_custom_fonts,
-    file: 'Pdf_custom_fonts.vue'
-  }, {
-    title: 'PDF: Language Fonts',
-    component: Pdf_language_fonts,
-    file: 'Pdf_language_fonts.vue'
-  }, {
-    title: 'Canvas: Tadpole Animation',
-    component: Canvas_tadpole_animation,
-    file: 'Canvas_tadpole_animation.vue'
-  }, {
-    title: 'Canvas: Helix Animation',
-    component: Canvas_Helix_animation,
-    file: 'Canvas_helix_animation.vue'
-  }, {
-    title: 'PDF: Encryption',
-    component: PDf_encrypt,
-    file: 'Pdf_encrypt_blob.vue'
-  }, {
-    title: 'Canvas: Rect Animation',
-    component: Canvas_rect_animation,
-    file: 'Canvas_animate.vue'
-  }, {
-    title: 'Canvas: Events',
-    component: Canvas_events,
-    file: 'Canvas_events.vue'
-  }, {
-    title: 'Canvas: Geo Map Rendering',
-    component: Canvas_geomap,
-    file: 'Canvas_geomap.vue'
-  }, {
-    title: 'PDF: Geo Map Rendering',
-    component: Pdf_geomap,
-    file: 'Pdf_geomap.vue'
-  }, {
-    title: 'PDF: Blob',
-    component: Pdf_blob,
-    file: 'Pdf_blob.vue'
+    title: 'Step Chart;',
+    component: stepChart,
+    file: 'charts/stepChart.vue'
   }];
 
-
-  let selectedValue = shallowRef('Canvas: Basic Rendering');
+  const selectedOption = ref('pdf');
+  let selectedValue = shallowRef('Bar Chart');
   let selectedExample = shallowRef('');
 
   watch(
@@ -108,7 +39,7 @@ import { useDisplay } from 'vuetify'
 
   watch(selectedValue, () => {
     router.push({
-      path: '/',
+      path: '/charts',
       query: {
         title: selectedValue.value
       },
@@ -122,9 +53,9 @@ import { useDisplay } from 'vuetify'
 
     if (!selectedObj) {
       router.push({
-        path: '/',
+        path: '/charts',
         query: {
-          title: 'Canvas: Basic Rendering'
+          title: 'Bar Chart'
         },
       })
       return;
@@ -171,7 +102,7 @@ const editorInit = (editor) => {
               style="min-height: 300px;"
             >
             <div class="canvasParentContainer">
-              <component :is="selectedExample"></component>
+              <component :is="selectedExample" :type="selectedOption"></component>
             </div>
           </v-col>
           <v-col
