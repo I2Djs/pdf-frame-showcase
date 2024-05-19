@@ -162,9 +162,6 @@
           let bbY = bbox.height * 0.5 - cH.height * 0.65;
           y = y !== undefined ? y : (bbY < 5 ? 5 : bbY);
           this.fetchEl("text").setAttr("y", y);
-          // this.setAttr("transform", {
-          //     translate: [t.translate[0], bbox.height * 0.5 - cH.height * 0.65],
-          // });
         });
         runningY += bbox.height < 30 ? 30 : bbox.height * 1 + 12.5;
       });

@@ -84,9 +84,8 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { scaleLinear, scaleBand } from 'd3-scale';
-import { line, curveCardinal } from 'd3-shape';
 import { extent } from 'd3-array';
 const ordinalScale = scaleBand().padding(0.3);
 const heightScale = scaleLinear();

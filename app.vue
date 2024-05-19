@@ -4,7 +4,9 @@
       <v-layout class="rounded rounded-md">
         <v-app-bar>
           <template v-slot:prepend>
-            <v-img src="pdf-frame.svg" width="150"></v-img>
+            <router-link to="/">
+              <v-img src="pdf-frame.svg" width="150" alt="PDF Frame"></v-img>
+            </router-link>
           </template>
           <v-app-bar-title v-if="!smAndDown"><label>PDF-Frame</label></v-app-bar-title>
           <v-spacer></v-spacer>
@@ -26,17 +28,17 @@
           </div>
         </v-app-bar>
       <v-main class="d-flex justify-center" style="min-height: 300px;">
-        <v-container fluid class="d-flex flex-column pl-12 pr-12 pt-5" style="overflow-y: auto;">
-          <v-row class="fill-width px-10">
-            <v-banner class="justify-center d-flex text-subtitle-1 text-center font-weight-medium main-banner py-0" justify="space-around" :stacked="true"  position="sticky" border=0 style="height: 100%; overflow-y: auto;">
+        <v-container fluid class="d-flex flex-column pl-12 pr-12 pt-5">
+          <v-row class="fill-width px-10" style="min-height: 3rem; max-height: 5rem; overflow-y: auto;">
+            <v-banner class="justify-center d-flex text-subtitle-1 text-center font-weight-medium main-banner py-0" justify="space-around" :stacked="true"  position="sticky" border=0 >
                 <template v-slot:text>
                   PDF-Frame, the JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue3 and Nuxt3 for dynamic graphical content creation.
                 </template>
             </v-banner>
           </v-row>
-          <v-row class="mt-0 pb-0">
-            <v-banner density="compact" class="d-flex pt-0 pb-0 justify-center text-subtitle-1 text-center  main-sub-title font-weight-medium" border=0>
-                Powered By <v-btn variant="tonal" href="https://github.com/I2Djs/I2Djs" color="pink-accent-3" class="rounded-pill ml-2" density="compact"> I2Djs </v-btn>
+          <v-row class="mt-0 pb-0" style="min-height: 3rem; max-height: 5rem; overflow-y: auto;">
+            <v-banner  class="d-flex pt-0 pb-1 pt-1 justify-center text-subtitle-1 text-center  main-sub-title font-weight-medium" border=0>
+                Powered By <v-btn variant="tonal" elevation="2" href="https://github.com/I2Djs/I2Djs" color="pink-accent-3" class="rounded-pill ml-2" density="compact"> I2Djs </v-btn>
             </v-banner>
           </v-row>
           <NuxtPage />

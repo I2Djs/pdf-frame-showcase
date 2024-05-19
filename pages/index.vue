@@ -1,6 +1,88 @@
+<template>
+  <v-row v-if="!selectedExample" class="fill-width px-10 pb-8" justify="space-around" style="max-height: 4rem; overflow-y: auto;">
+      <v-text-field
+        label="Select Example"
+         hint="Select example from the list"
+         persistent-hint
+         density="compact"
+         class="select-example"
+        @update:modelValue="onInput"
+      > </v-text-field>
+  </v-row>
+  <v-row v-else class="fill-width px-10 pb-8">
+       <v-btn variant="text" color="purple" @click="backClick()"
+       prepend-icon="mdi-arrow-left-circle">
+         <template v-slot:prepend>
+            <v-icon ></v-icon>
+          </template>
+          Back to Examples
+       </v-btn>
+  </v-row>
+
+
+  <v-row v-if="!selectedExample" class="pb-1 px-10" style="min-height: calc(100% - 10rem); max-height: calc(100%); overflow-y: auto;">
+    <template v-for="(item, i) in exampleList" :key="i">
+      <v-col class="d-flex justify-space-evenly align-content-start flex-wrap ga-3">
+          <v-hover
+            v-slot="{ isHovering, props }">
+            <v-card
+              width="350"
+              max-height="250"
+              :elevation="isHovering ? 12 : 2"
+              v-bind="props"
+            >
+              <v-img
+                class="align-end text-white"
+                height="200"
+                :src="item.snap"
+                cover
+              >
+                <v-card-title>{{ item.title }}</v-card-title>
+              </v-img>
+            <v-card-actions>
+              <v-btn v-for="(type) in item.types" :key="type" :color="type === 'pdf' ? 'purple' : '#d93484'" :text="type" density="compact" @click="viewClick(item, type)" elevation="2"></v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-hover>
+      </v-col>
+    </template>
+  </v-row>
+
+  <v-row v-else class="fill-width justify-space-around mb-5" style="min-height: 700px; max-height: 100%; overflow-y: auto;" >
+      <v-col
+          cols="12"
+          md="7"
+          :class=" mdAndUp ? 'order-2' : 'order-1'"
+          style="min-height: 300px;"
+        >
+        <div class="canvasParentContainer">
+          <component :is="selectedExample" :type="selectedOption"></component>
+        </div>
+      </v-col>
+      <v-col
+          cols="12"
+          md="5"
+          :class="mdAndUp ? 'order-1' : 'order-2'"
+          style="min-height: 300px;"
+        >
+          <v-ace-editor
+            v-model:value="rawTemplate"
+            lang="html"
+            theme="chrome"
+            :readOnly="true"
+            style="height: 100%"
+            @init="editorInit" />
+      </v-col>
+  </v-row>
+</template>
+
+
 <script setup>
-import { watch, shallowRef, onMounted, ref } from 'vue';
-import Canvas_example from './../components/Canvas_example.vue';
+import { watch, shallowRef, ref } from 'vue';
+import barChart from './../components/charts/barChart.vue';
+import multiLineChart from './../components/charts/multiLineChart.vue';
+import stepChart from './../components/charts/stepChart.vue';
+import Canvas_example from './../components/Basic_example.vue';
 import Canvas_path_animation from './../components/Canvas_path_animation.vue';
 import Canvas_path_morph from './../components/Canvas_path_morph.vue';
 import Pdf_example from './../components/Pdf_example.vue';
@@ -13,124 +95,165 @@ import PDf_encrypt from './../components/Pdf_encrypt_blob.vue';
 import Canvas_events from './../components/Canvas_events.vue';
 import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.vue';
 import Canvas_line_chart from './../components/Canvas_line_chart.vue';
-import Canvas_geomap from './../components/Canvas_geomap.vue';
-import Pdf_geomap from './../components/Pdf_geomap.vue';
+import Geomap from './../components/Geomap.vue';
 import Pdf_line_chart from './../components/Pdf_line_chart.vue';
 import Pdf_blob from './../components/Pdf_blob.vue';
+
 import { useDisplay } from 'vuetify'
   
   const { mdAndUp } = useDisplay()
   let rawTemplate = shallowRef('');
   const router = useRouter();
   const route = useRoute();
+  const selectedOption = ref('pdf');
+  let selectedValue = shallowRef('');
+  let selectedExample = shallowRef('');
   
-  let exampleList = [{
-    title: 'Canvas: Basic Rendering',
+  let full_exampleList = [{
+    title: 'PDF, Canvas : Basic Example',
     component: Canvas_example,
-    file: 'Canvas_example.vue'
+    file: 'Canvas_example.vue',
+    snap: 'snaps/snap.png',
+    types: ['pdf', 'canvas']
   }, {
-    title: 'PDF: Basic Rendering',
+    title: 'PDF: Multi Page PDF',
     component: Pdf_example,
-    file: 'Pdf_example.vue'
-  }, {
-    title: 'Canvas: Line Chart; Resizable',
-    component: Canvas_line_chart,
-    file: 'Canvas_line_chart.vue'
+    file: 'Pdf_example.vue',
+    snap: 'snaps/snap.png',
+    types: ['pdf']
   },{
-    title: 'PDF: Line Chart',
+    title: 'PDF, Canvas: Bar Chart',
+    component: barChart,
+    file: 'charts/barChart.vue',
+    snap: 'snaps/barChart.png',
+    types: ['pdf', 'canvas']
+  }, {
+    title: 'PDF, Canvas: MultiLine Chart',
+    component: multiLineChart,
+    file: 'charts/multiLineChart.vue',
+    snap: 'snaps/multiLineChart.png',
+    types: ['pdf', 'canvas']
+  }, {
+    title: 'PDF, Canvas: Line Chart',
     component: Pdf_line_chart,
-    file: 'Pdf_line_chart.vue'
+    file: 'Pdf_line_chart.vue',
+    snap: 'snaps/canvas-pdf-line-chart.png',
+    types: ['pdf', 'canvas']
+  }, {
+    title: 'Canvas: Step Chart; Resizable',
+    component: Canvas_line_chart,
+    file: 'Canvas_line_chart.vue',
+    snap: 'snaps/lineChart.png',
+    types: [ 'canvas']
   }, {
     title: 'PDF: Table rendering; Auto Pagination',
     component: PDf_table,
-    file: 'Pdf_table.vue'
+    file: 'Pdf_table.vue',
+    snap: 'snaps/pdf-table.png',
+    types: ['pdf']
+  }, {
+    title: 'PDF, Canvas: Geo Map Rendering',
+    component: Geomap,
+    file: 'Geomap.vue',
+    snap: 'snaps/pdf-geo.png',
+    types: ['pdf', 'canvas']
   }, {
     title: 'Canvas: Path Animaton',
     component: Canvas_path_animation,
-    file: 'Canvas_path_animation.vue'
+    file: 'Canvas_path_animation.vue',
+    snap: 'snaps/path-animation.gif',
+    types: ['canvas']
   }, {
     title: 'Canvas: Path Morph',
     component: Canvas_path_morph,
-    file: 'Canvas_path_morph.vue'
+    file: 'Canvas_path_morph.vue',
+    snap: 'snaps/path-morph.gif',
+    types: ['canvas']
   }, {
     title: 'PDF: Custom Fonts',
     component: Pdf_custom_fonts,
-    file: 'Pdf_custom_fonts.vue'
+    file: 'Pdf_custom_fonts.vue',
+    snap: 'snaps/pdf-customFonts.png',
+    types: ['pdf']
   }, {
     title: 'PDF: Language Fonts',
     component: Pdf_language_fonts,
-    file: 'Pdf_language_fonts.vue'
+    file: 'Pdf_language_fonts.vue',
+    snap: 'snaps/languageFonts.png',
+    types: ['pdf']
   }, {
     title: 'Canvas: Tadpole Animation',
     component: Canvas_tadpole_animation,
-    file: 'Canvas_tadpole_animation.vue'
+    file: 'Canvas_tadpole_animation.vue',
+    snap: 'snaps/canvas-tadpole.gif',
+    types: ['canvas']
   }, {
     title: 'Canvas: Helix Animation',
     component: Canvas_Helix_animation,
-    file: 'Canvas_helix_animation.vue'
+    file: 'Canvas_helix_animation.vue',
+    snap: 'snaps/helix.gif',
+    types: ['canvas']
   }, {
     title: 'PDF: Encryption',
     component: PDf_encrypt,
-    file: 'Pdf_encrypt_blob.vue'
+    file: 'Pdf_encrypt_blob.vue',
+    snap: 'snaps/pdf-encryption.png',
+    types: ['pdf']
   }, {
     title: 'Canvas: Rect Animation',
     component: Canvas_rect_animation,
-    file: 'Canvas_animate.vue'
+    file: 'Canvas_animate.vue',
+    snap: 'snaps/rect-animation.gif',
+    types: ['canvas']
   }, {
     title: 'Canvas: Events',
     component: Canvas_events,
-    file: 'Canvas_events.vue'
-  }, {
-    title: 'Canvas: Geo Map Rendering',
-    component: Canvas_geomap,
-    file: 'Canvas_geomap.vue'
-  }, {
-    title: 'PDF: Geo Map Rendering',
-    component: Pdf_geomap,
-    file: 'Pdf_geomap.vue'
+    file: 'Canvas_events.vue',
+    snap: 'snaps/canvas_events.png',
+    types: ['canvas']
   }, {
     title: 'PDF: Blob',
     component: Pdf_blob,
-    file: 'Pdf_blob.vue'
+    file: 'Pdf_blob.vue',
+    snap: 'snaps/pdf-table.png',
+    types: ['pdf']
   }];
 
-
-  let selectedValue = shallowRef('Canvas: Basic Rendering');
-  let selectedExample = shallowRef('');
+  const exampleList = shallowRef();
+  exampleList.value = full_exampleList;
 
   watch(
     () => route.query.title,
     title => {
-      loadComponent(title);
-      selectedValue.value = title;
+      if (title) {
+        loadComponent(title, route.query.type);
+        selectedValue.value = title;
+      }
     }, { immediate: true }
   )
 
   watch(selectedValue, () => {
+    if (!selectedValue.value) {
+      return;
+    }
     router.push({
       path: '/',
       query: {
-        title: selectedValue.value
+        title: selectedValue.value,
+        type: route.query.type
       },
     })
   });
 
-  async function loadComponent(selectedEx) {
-    let selectedObj =  exampleList.filter((d)=>{
+  async function loadComponent(selectedEx, type) {
+    let selectedObj =  exampleList.value.filter((d)=>{
       return d.title === selectedEx;
     })[0];
-
     if (!selectedObj) {
-      router.push({
-        path: '/',
-        query: {
-          title: 'Canvas: Basic Rendering'
-        },
-      })
       return;
     }
-
     selectedExample.value = selectedObj.component;
+    selectedOption.value = type || selectedObj.type[0]
 
     let response = await $fetch("/components/"+selectedObj.file);
     response = await response.text();
@@ -138,58 +261,39 @@ import { useDisplay } from 'vuetify'
   }
 
 
+  function viewClick(item, type) {
+    router.push({
+      path: '/',
+      query: {
+        title: item.title,
+        type
+      },
+    })
+  }
+
+
 const editorInit = (editor) => {
   editor.setReadOnly(true);
 };
 
+function backClick () {
+  selectedExample.value = null;
+  selectedValue.value = null;
+  router.push({ path: '/', replace: true });
+}
+
+function onInput (input) {
+  if (!input) {
+    exampleList.value = full_exampleList;
+    return;
+  }
+  exampleList.value = full_exampleList.filter((d) => {
+    return d.title.toLowerCase().includes(input.toLowerCase());
+  });
+}
+
 
 </script>
-
-<template>
-      <v-row class="fill-width px-10" justify="space-around">
-          <v-autocomplete
-            density="compact"
-            label="Select Example"
-            :items="exampleList"
-             v-model="selectedValue"
-             hint="Select example from the list"
-             persistent-hint
-             class="select-example"
-            :item-props="(d) => d"
-          > </v-autocomplete>
-      </v-row>
-      <v-row justify="space-around" style=" max-height: 2rem;" class="pb-1">
-          <v-banner class="h-auto justify-center align-center text-center text-subtitle-1 example-title pt-0 pb-0" lines="one" density="compact" border=0 position="sticky">
-            Try Examples on:  <v-btn class="ml-2" color="light-blue-darken-4" prepend-icon="mdi-pencil"  href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase/tree/stackBlitzShowcase">Stackblitz</v-btn>
-          </v-banner>
-      </v-row>
-      <v-row class="fill-width justify-space-around mb-5" style="min-height: 700px; max-height: 100%; overflow-y: auto;" >
-          <v-col
-              cols="12"
-              md="7"
-              :class=" mdAndUp ? 'order-2' : 'order-1'"
-              style="min-height: 300px;"
-            >
-            <div class="canvasParentContainer">
-              <component :is="selectedExample"></component>
-            </div>
-          </v-col>
-          <v-col
-              cols="12"
-              md="5"
-              :class="mdAndUp ? 'order-1' : 'order-2'"
-              style="min-height: 300px;"
-            >
-              <v-ace-editor
-                v-model:value="rawTemplate"
-                lang="html"
-                theme="chrome"
-                :readOnly="true"
-                style="height: 100%"
-                @init="editorInit" />
-          </v-col>
-      </v-row>
-</template>
 
 <style>
 html, body, #__nuxt {
@@ -232,6 +336,12 @@ html, body, #__nuxt {
   width: 100%;
 }
 
+#contextContainer{
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
 #canvasContainer{
   height: 100%;
   width: 100%;
@@ -268,5 +378,11 @@ html, body, #__nuxt {
 
 .select-example .v-input__details {
   display: none;
+}
+
+.v-card-title {
+  position: relative;
+  z-index: 999999 !important;
+  background: rgb(137 76 148 / 77%);
 }
 </style>

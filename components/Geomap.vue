@@ -1,7 +1,7 @@
 <template>
     <pdfFrame
-      id="canvasContainer"
-      type="canvas"
+      id="contextContainer"
+      :type="type"
       @on-ready="onInstanceReady"
     >
       <i-g
@@ -32,7 +32,15 @@ let geoPaths = ref([]);
 var projection = d3Geo.geoMercator()
 var path = d3Geo.geoPath().projection(projection);
 
-  function onInstanceReady (layer) {
+const props = defineProps({
+    type: {
+      type: String,
+      required: true,
+      default: 'canvas',
+    },
+  });
+
+function onInstanceReady (layer) {
     width.value = layer.width - 50;
     height.value = layer.height - 50;
 
@@ -41,14 +49,14 @@ var path = d3Geo.geoPath().projection(projection);
                 .scale([height.value * 1.5]);
 
     fetchGeoJson();
-  }
+}
 
-  async function fetchGeoJson() {
+async function fetchGeoJson() {
     let response = await fetch("https://nswamy14.github.io/geoJson/india.district.geo.json");
     let geoJsonData = await response.json();
 
     geoPaths.value = geoJsonData.features;
-  }
+}
 
 
 
