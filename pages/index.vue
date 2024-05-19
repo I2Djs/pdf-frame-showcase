@@ -1,8 +1,8 @@
 <template>
   <v-row v-if="!selectedExample" class="fill-width px-10 pb-8" justify="space-around" style="max-height: 4rem; overflow-y: auto;">
       <v-text-field
-        label="Select Example"
-         hint="Select example from the list"
+        label="Search Example"
+         hint="Search example from the list"
          persistent-hint
          density="compact"
          class="select-example"
