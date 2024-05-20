@@ -1,7 +1,8 @@
 <template>
-  <v-row v-if="!selectedExample" class="fill-width px-10 pb-8" justify="space-around" style="max-height: 4rem; overflow-y: auto;">
+  <v-row v-if="!selectedExample" class="fill-width px-10 pb-8" justify="space-around">
       <v-text-field
         label="Search Example"
+        variant="outlined"
          hint="Search example from the list"
          persistent-hint
          density="compact"
@@ -9,7 +10,7 @@
         @update:modelValue="onInput"
       > </v-text-field>
   </v-row>
-  <v-row v-else class="fill-width px-10 pb-8">
+  <v-row v-else class="fill-width px-10 pb-8" style="height:auto">
        <v-btn variant="text" color="purple" @click="backClick()"
        prepend-icon="mdi-arrow-left-circle">
          <template v-slot:prepend>
@@ -48,7 +49,7 @@
     </template>
   </v-row>
 
-  <v-row v-else class="fill-width justify-space-around mb-5" style="min-height: 700px; max-height: 100%; overflow-y: auto;" >
+  <v-row v-else class="fill-width justify-space-around mb-5" style="min-height: calc(100% - 10rem); max-height: calc(100%); overflow-y: auto;" >
       <v-col
           cols="12"
           md="7"
@@ -119,7 +120,7 @@ import { useDisplay } from 'vuetify'
     title: 'PDF: Multi Page PDF',
     component: Pdf_example,
     file: 'Pdf_example.vue',
-    snap: 'snaps/snap.png',
+    snap: 'snaps/pdf-multi-snap.png',
     types: ['pdf']
   },{
     title: 'PDF, Canvas: Bar Chart',
