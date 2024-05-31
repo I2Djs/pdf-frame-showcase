@@ -35,7 +35,7 @@
             </v-label>
           </v-row>
           <v-row class="fill-width px-10">
-            <v-banner class="justify-center d-flex text-h6 text-center font-weight-medium main-banner pt-0" color="purple-accent-2" justify="space-around" :stacked="true"  position="sticky" border=0 >
+            <v-banner class="justify-center d-flex text-center font-weight-medium main-banner pt-0" :class=" smAndDown ? 'text-subtitle-1' : 'text-h6'" color="purple-accent-2" justify="space-around" :stacked="true"  position="sticky" border=0 >
                 <template v-slot:text>
                   JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue3 and Nuxt3 for dynamic graphical content creation.
                 </template>
