@@ -10,7 +10,7 @@
         @update:modelValue="onInput"
       > </v-text-field>
   </v-row>
-  <v-row v-else class="fill-width px-10 pb-8" style="height:auto">
+  <v-row v-else class="fill-width px-10 pb-8" :class="mdAndUp ? 'justify-left' : 'justify-center'" style="height:auto">
        <v-btn variant="outlined" color="purple-lighten-5" size="small" @click="backClick()" prepend-icon="mdi-arrow-left-circle">
          <template v-slot:prepend>
             <v-icon ></v-icon>
