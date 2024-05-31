@@ -48,7 +48,7 @@
     </template>
   </v-row>
 
-  <v-row v-else class="fill-width justify-space-around mb-5" style="min-height: calc(100% - 10rem); max-height: calc(100%); overflow-y: auto;" >
+  <v-row v-else class="fill-width justify-space-around mb-5" style="max-height: calc(100%); overflow-y: auto;" >
       <v-col
           cols="12"
           md="7"
