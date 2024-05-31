@@ -6,13 +6,12 @@
          hint="Search example from the list"
          persistent-hint
          density="compact"
-         class="select-example"
+         class="input-select-example"
         @update:modelValue="onInput"
       > </v-text-field>
   </v-row>
   <v-row v-else class="fill-width px-10 pb-8" style="height:auto">
-       <v-btn variant="text" color="purple" @click="backClick()"
-       prepend-icon="mdi-arrow-left-circle">
+       <v-btn variant="outlined" color="purple-lighten-5" size="small" @click="backClick()" prepend-icon="mdi-arrow-left-circle">
          <template v-slot:prepend>
             <v-icon ></v-icon>
           </template>
@@ -21,13 +20,13 @@
   </v-row>
 
 
-  <v-row v-if="!selectedExample" class="pb-1 px-10" style="min-height: calc(100% - 10rem); max-height: calc(100%); overflow-y: auto;">
+  <v-row v-if="!selectedExample" class="pb-1 px-10" style="max-height: calc(100%); overflow-y: auto;">
     <template v-for="(item, i) in exampleList" :key="i">
       <v-col class="d-flex justify-space-evenly align-content-start flex-wrap ga-3">
           <v-hover
             v-slot="{ isHovering, props }">
             <v-card
-              width="350"
+              width="325"
               max-height="250"
               :elevation="isHovering ? 12 : 2"
               v-bind="props"
@@ -41,7 +40,7 @@
                 <v-card-title>{{ item.title }}</v-card-title>
               </v-img>
             <v-card-actions>
-              <v-btn v-for="(type) in item.types" :key="type" :color="type === 'pdf' ? 'purple' : '#d93484'" :text="type" density="compact" @click="viewClick(item, type)" elevation="2"></v-btn>
+              <v-btn v-for="(type) in item.types" size="small" variant="flat" :key="type" :color="type === 'pdf' ? 'purple' : '#d93484'" :text="type" density="compact" @click="viewClick(item, type)" elevation="2"></v-btn>
             </v-card-actions>
           </v-card>
         </v-hover>
@@ -74,6 +73,11 @@
             style="height: 100%"
             @init="editorInit" />
       </v-col>
+  </v-row>
+  <v-row class="fill-width">
+    <v-banner  class="d-flex pt-2 pb-2 justify-center text-subtitle-1 text-center font-weight-medium pink-lighten-3 footer-class" color="pink-lighten-3" border=0>
+        Powered By <v-btn variant="outlined" elevation="2" href="https://github.com/I2Djs/pdf-frame" color="pink-lighten-3" class="rounded-pill ml-2" density="compact"> PDF-Frame </v-btn>
+    </v-banner>
   </v-row>
 </template>
 
@@ -226,9 +230,13 @@ import { useDisplay } from 'vuetify'
   watch(
     () => route.query.title,
     title => {
+      console.log(title);
       if (title) {
         loadComponent(title, route.query.type);
         selectedValue.value = title;
+      } else {
+        selectedExample.value = null;
+        selectedValue.value = null;
       }
     }, { immediate: true }
   )
@@ -365,10 +373,6 @@ html, body, #__nuxt {
 }
 
 
-.main-sub-title {
-  color: #D81B60 !important;
-}
-
 .example-title {
   color: #01579B !important;
 }
@@ -377,7 +381,11 @@ html, body, #__nuxt {
   padding-inline-end: 0px !important;
 }
 
-.select-example .v-input__details {
+.input-select-example {
+  color: white;
+}
+
+.input-select-example .v-input__details {
   display: none;
 }
 
@@ -385,5 +393,14 @@ html, body, #__nuxt {
   position: relative;
   z-index: 999999 !important;
   background: rgb(137 76 148 / 77%);
+}
+
+.footer-class {
+  background: none;
+}
+
+.ace-chrome {
+  background: #3b2752 !important;
+  color: white !important;
 }
 </style>

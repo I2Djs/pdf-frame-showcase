@@ -2,45 +2,50 @@
   <NuxtLayout>
     <v-app>
       <v-layout class="rounded rounded-md">
-        <v-app-bar>
+        <v-app-bar class="page-header">
           <template v-slot:prepend>
             <router-link to="/">
               <v-img src="pdf-frame.svg" width="150" alt="PDF Frame"></v-img>
             </router-link>
           </template>
-          <v-app-bar-title v-if="!smAndDown"><label>PDF-Frame</label></v-app-bar-title>
+          <!-- <v-app-bar-title v-if="!smAndDown"><label>PDF-Frame</label></v-app-bar-title> -->
           <v-spacer></v-spacer>
           <div class="action-btns d-flex pr-10">
-            <v-btn density="comfortable" href="https://github.com/I2Djs/pdf-frame" color="purple-darken-3" rounded="xs" size="x" :slim="true">
+            <v-btn density="comfortable" href="https://github.com/I2Djs/pdf-frame" class="link-color" rounded="xs" size="x" :slim="true">
               <v-icon size="x-large">mdi-github</v-icon>
               PDF-Frame
             </v-btn>
 
-            <v-btn v-if="!smAndDown" density="comfortable" href="https://github.com/I2Djs/pdf-frame/wiki" color="purple-darken-3" rounded="xs" size="x" :slim="true">
+            <v-btn v-if="!smAndDown" density="comfortable" href="https://github.com/I2Djs/pdf-frame/wiki" class="link-color" rounded="xs" size="x" :slim="true">
               <v-icon size="x-large">mdi-school-outline</v-icon>
               Guide
             </v-btn>
 
-            <v-btn v-if="!smAndDown" density="comfortable" href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase" color="purple-darken-3" rounded="xs" size="x" :slim="true">
+            <v-btn v-if="!smAndDown" density="comfortable" href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase" class="link-color" rounded="xs" size="x" :slim="true">
               <v-icon size="x-large">mdi-code-tags</v-icon>
               Examples
             </v-btn>
           </div>
         </v-app-bar>
-      <v-main class="d-flex justify-center" style="min-height: 300px;">
-        <v-container fluid class="d-flex flex-column pl-12 pr-12 pt-5">
-          <v-row class="fill-width px-10" style="min-height: 3rem; max-height: 5rem; overflow-y: auto;">
-            <v-banner class="justify-center d-flex text-subtitle-1 text-center font-weight-medium main-banner py-0" justify="space-around" :stacked="true"  position="sticky" border=0 >
+      <v-main class="d-flex justify-center">
+        <v-container fluid class="d-flex flex-column pl-12 pr-12 pt-5" style="height: auto;">
+          <v-row class="fill-width px-10 justify-center d-flex">
+            <v-label class="text-h2 text-center font-weight-bold main-banner-title py-0" justify="space-around" :stacked="true"  position="sticky" border=0 >
+                PDF-Frame
+            </v-label>
+          </v-row>
+          <v-row class="fill-width px-10">
+            <v-banner class="justify-center d-flex text-h6 text-center font-weight-medium main-banner py-0" color="purple-accent-2" justify="space-around" :stacked="true"  position="sticky" border=0 >
                 <template v-slot:text>
-                  PDF-Frame, the JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue3 and Nuxt3 for dynamic graphical content creation.
+                  JavaScript framework for client-side PDF and Canvas rendering. Effortlessly integrate with Vue3 and Nuxt3 for dynamic graphical content creation.
                 </template>
             </v-banner>
           </v-row>
-          <v-row class="mt-0 pb-0" style="min-height: 3rem; max-height: 5rem; overflow-y: auto;">
-            <v-banner  class="d-flex pt-0 pb-1 pt-1 justify-center text-subtitle-1 text-center  main-sub-title font-weight-medium" border=0>
-                Powered By <v-btn variant="tonal" elevation="2" href="https://github.com/I2Djs/I2Djs" color="pink-accent-3" class="rounded-pill ml-2" density="compact"> I2Djs </v-btn>
+          <!-- <v-row class="mt-0 pb-0" style="min-height: 3rem;">
+            <v-banner  class="d-flex pt-0 pb-1 pt-1 justify-center text-subtitle-1 text-center  main-sub-title font-weight-medium pink-lighten-3" color="pink-lighten-3" border=0>
+                Powered By <v-btn variant="outlined" elevation="2" href="https://github.com/I2Djs/pdf-frame" color="pink-lighten-3" class="rounded-pill ml-2" density="compact"> PDF-Frame </v-btn>
             </v-banner>
-          </v-row>
+          </v-row> -->
           <NuxtPage />
         </v-container>
       </v-main>
@@ -76,12 +81,24 @@
     padding-right: 3rem;
   }*/
 
-  .main-banner .v-banner-text {
+.main-banner {
+  background: none !important;
+  color: white !important;
+}
+
+.main-banner {
+  background: none !important;
+  color: #cbd5e1 !important;
+}
+
+.main-banner .v-banner-text {
   padding-inline-end: 0px !important;
+  color: white !important;
 }
 
 .main-sub-title {
-  color: #D81B60 !important;
+  background: none !important;
+  /* color: #ff76a8 !important; */
 }
 
 .example-title {
@@ -93,5 +110,20 @@
     flex-wrap: wrap;
     flex: 1 1 auto;
     margin: 0;
+}
+
+.v-main {
+   /* background: linear-gradient(to bottom right, #30105f, #541961)  */
+   background: #1e142a;
+/*  background-color: rgb(15, 23, 42);*/
+}
+
+.page-header {
+  background: #180a1b !important;
+  color: white !important;
+}
+
+.page-header .link-color {
+  color: #ffa0cf !important;
 }
 </style>
