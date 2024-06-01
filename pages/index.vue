@@ -20,7 +20,7 @@
   </v-row>
 
 
-  <v-row v-if="!selectedExample" class="pb-1 px-10" style="max-height: calc(100%); overflow-y: auto;">
+  <v-row v-if="!selectedExample" class="pb-1 px-10" style="min-height: calc(100% - 20rem); max-height: calc(100%); overflow-y: auto;">
     <template v-for="(item, i) in exampleList" :key="i">
       <v-col class="d-flex justify-space-evenly align-content-start flex-wrap ga-3">
           <v-hover
@@ -48,7 +48,7 @@
     </template>
   </v-row>
 
-  <v-row v-else class="fill-width justify-space-around" style="min-height: calc(100% - 16rem); max-height: calc(100%); overflow-y: auto;" >
+  <v-row v-else class="fill-width justify-space-around pb-1 px-10" style="min-height: calc(100% - 17rem); max-height: calc(100%); overflow-y: auto;" >
       <v-col
           cols="12"
           md="7"
