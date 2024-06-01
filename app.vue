@@ -133,4 +133,12 @@
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
 }
+
+</style>
+
+<style>
+  .ace_gutter-layer  {
+    background: #673264 !important;
+    color: white !important;
+  }
 </style>

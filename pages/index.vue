@@ -37,7 +37,7 @@
                 :src="item.snap"
                 cover
               >
-                <v-card-title>{{ item.title }}</v-card-title>
+                <v-card-title :class=" mdAndUp ? 'text-h6' : 'text-subtitle-1'">{{ item.title }}</v-card-title>
               </v-img>
             <v-card-actions>
               <v-btn v-for="(type) in item.types" size="small" variant="flat" :key="type" :color="type === 'pdf' ? 'purple' : '#d93484'" :text="type" density="compact" @click="viewClick(item, type)" elevation="2"></v-btn>
@@ -115,10 +115,10 @@ import { useDisplay } from 'vuetify'
   let selectedExample = shallowRef('');
   
   let full_exampleList = [{
-    title: 'PDF, Canvas : Basic Example',
-    component: Canvas_example,
-    file: 'Canvas_example.vue',
-    snap: 'snaps/snap.png',
+    title: 'PDF, Canvas: Bar Chart',
+    component: barChart,
+    file: 'charts/barChart.vue',
+    snap: 'snaps/barChart.png',
     types: ['pdf', 'canvas']
   }, {
     title: 'PDF: Multi Page PDF',
@@ -126,11 +126,11 @@ import { useDisplay } from 'vuetify'
     file: 'Pdf_example.vue',
     snap: 'snaps/pdf-multi-snap.png',
     types: ['pdf']
-  },{
-    title: 'PDF, Canvas: Bar Chart',
-    component: barChart,
-    file: 'charts/barChart.vue',
-    snap: 'snaps/barChart.png',
+  }, {
+    title: 'PDF, Canvas : Basic Example',
+    component: Canvas_example,
+    file: 'Canvas_example.vue',
+    snap: 'snaps/snap.png',
     types: ['pdf', 'canvas']
   }, {
     title: 'PDF, Canvas: MultiLine Chart',
