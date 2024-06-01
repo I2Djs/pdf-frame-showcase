@@ -124,6 +124,13 @@
 }
 
 .page-header .link-color {
-  color: #ffa0cf !important;
+  color: #ffbcdd !important;
+}
+
+.main-banner-title {
+  opacity: 0.9 !important;
+  background: linear-gradient(to right,#b77cba, #e76f96, #b77cba);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 </style>

@@ -288,6 +288,7 @@ const editorInit = (editor) => {
 function backClick () {
   selectedExample.value = null;
   selectedValue.value = null;
+  exampleList.value = full_exampleList;
   router.push({ path: '/', replace: true });
 }
 
