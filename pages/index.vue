@@ -26,7 +26,7 @@
           <v-hover
             v-slot="{ isHovering, props }">
             <v-card
-              width="325"
+              :width="mdAndUp ? 325 : 250"
               max-height="250"
               :elevation="isHovering ? 12 : 2"
               v-bind="props"
