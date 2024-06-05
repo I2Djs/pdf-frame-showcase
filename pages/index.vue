@@ -101,6 +101,7 @@ import Canvas_events from './../components/Canvas_events.vue';
 import Canvas_tadpole_animation from './../components/Canvas_tadpole_animation.vue';
 import Canvas_line_chart from './../components/Canvas_line_chart.vue';
 import Geomap from './../components/Geomap.vue';
+import UsGeomap from './../components/US_geomap.vue';
 import Pdf_line_chart from './../components/Pdf_line_chart.vue';
 import Pdf_blob from './../components/Pdf_blob.vue';
 
@@ -115,7 +116,7 @@ import { useDisplay } from 'vuetify'
   let selectedExample = shallowRef('');
   
   let full_exampleList = [{
-    title: 'PDF, Canvas: Bar Chart',
+    title: 'PDF-Canvas: Bar Chart',
     component: barChart,
     file: 'charts/barChart.vue',
     snap: 'snaps/barChart.png',
@@ -127,19 +128,31 @@ import { useDisplay } from 'vuetify'
     snap: 'snaps/pdf-multi-snap.png',
     types: ['pdf']
   }, {
-    title: 'PDF, Canvas : Basic Example',
-    component: Canvas_example,
-    file: 'Canvas_example.vue',
-    snap: 'snaps/snap.png',
+    title: 'PDF-Canvas: Geo Map Rendering',
+    component: Geomap,
+    file: 'Geomap.vue',
+    snap: 'snaps/pdf-geo.png',
     types: ['pdf', 'canvas']
   }, {
-    title: 'PDF, Canvas: MultiLine Chart',
+    title: 'PDF-Canvas: MultiLine Chart',
     component: multiLineChart,
     file: 'charts/multiLineChart.vue',
     snap: 'snaps/multiLineChart.png',
     types: ['pdf', 'canvas']
   }, {
-    title: 'PDF, Canvas: Line Chart',
+    title: 'PDF-Canvas : Basic Example',
+    component: Canvas_example,
+    file: 'Canvas_example.vue',
+    snap: 'snaps/snap.png',
+    types: ['pdf', 'canvas']
+  }, {
+    title: 'PDF-Canvas: US Geo Map',
+    component: UsGeomap,
+    file: 'US_geomap.vue',
+    snap: 'snaps/us-geo.png',
+    types: ['pdf', 'canvas']
+  }, {
+    title: 'PDF-Canvas: Line Chart',
     component: Pdf_line_chart,
     file: 'Pdf_line_chart.vue',
     snap: 'snaps/canvas-pdf-line-chart.png',
@@ -156,13 +169,7 @@ import { useDisplay } from 'vuetify'
     file: 'Pdf_table.vue',
     snap: 'snaps/pdf-table.png',
     types: ['pdf']
-  }, {
-    title: 'PDF, Canvas: Geo Map Rendering',
-    component: Geomap,
-    file: 'Geomap.vue',
-    snap: 'snaps/pdf-geo.png',
-    types: ['pdf', 'canvas']
-  }, {
+  },{
     title: 'Canvas: Path Animaton',
     component: Canvas_path_animation,
     file: 'Canvas_path_animation.vue',

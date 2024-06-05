@@ -40,24 +40,16 @@ const props = defineProps({
     },
   });
 
-function onInstanceReady (layer) {
+async function onInstanceReady (layer) {
     width.value = layer.width - 50;
     height.value = layer.height - 50;
 
-    projection.translate([width.value / 2, height.value / 2])
-                .center([78.96288, 20.593684])
-                .scale([height.value * 1.5]);
-
-    fetchGeoJson();
-}
-
-async function fetchGeoJson() {
     let response = await fetch("https://nswamy14.github.io/geoJson/india.district.geo.json");
     let geoJsonData = await response.json();
 
+    projection.fitExtent([[20, 20], [width.value - 20, height.value - 20]], geoJsonData);
+
     geoPaths.value = geoJsonData.features;
 }
-
-
 
 </script>
