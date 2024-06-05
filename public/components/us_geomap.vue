@@ -19,7 +19,7 @@
               },
             ]"
           />
-          <i-rect :x="0" :y="0" :width="width" :height="height" rx=20 ry=20
+          <i-rect :x="0" :y="0" :width="width" :height="height"
             :style="{ fillStyle: 'grad(grad3)' }"
           />
       </i-group>
@@ -33,7 +33,8 @@
           :style="{
               lineWidth: 2,
               strokeStyle:'rgba(255, 255, 255, 1)',
-              fillStyle:'rgba(255, 255, 255, 0.5)',
+              fillStyle:'rgba(255, 255, 255, 1)',
+              opacity: 0.5
           }"
         ></i-path>
       </i-g>
@@ -51,8 +52,6 @@ let geoPaths = ref([]);
 var projection = d3Geo.geoMercator();
 var path = d3Geo.geoPath().projection(projection);
 
-console.log(jsonData);
-
 const props = defineProps({
     type: {
       type: String,
@@ -68,10 +67,6 @@ function onInstanceReady (layer) {
     projection.fitExtent([[20, 20], [width.value - 20, height.value - 20]], jsonData);
 
     geoPaths.value = jsonData.features;
-
-    geoPaths.value.forEach((d) => {
-      console.log(d, path(d));
-    })
 }
 
 </script>
