@@ -148,7 +148,7 @@ import { useDisplay } from 'vuetify'
   }, {
     title: 'PDF-Canvas: US Geo Map',
     component: UsGeomap,
-    file: 'US_geomap.vue',
+    file: 'US_geo_map.vue',
     snap: 'snaps/us-geo.png',
     types: ['pdf', 'canvas']
   }, {
