@@ -13,9 +13,9 @@
         :d="path(d)"
         :style="{
           shadowBlur: 20,
-            lineWidth: 0.2,
-            fillStyle: 'rgba(0, 0, 1, 1)',
-            strokeStyle: '#42baff',
+            lineWidth: 1,
+            fillStyle: 'rgba(255, 255, 255, 1)',
+            strokeStyle: '#064c75',
         }"
       ></i-path>
     </i-g>

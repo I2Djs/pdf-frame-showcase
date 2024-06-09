@@ -10,13 +10,17 @@
         @update:modelValue="onInput"
       > </v-text-field>
   </v-row>
-  <v-row v-else class="fill-width px-10 pb-8" :class="mdAndUp ? 'justify-left' : 'justify-center'" style="height:auto">
+  <v-row v-else class="fill-width px-10 pb-8" :class="mdAndUp ? 'justify-left' : 'justify-center wrap-el'" style="height:auto">
        <v-btn variant="outlined" color="purple-lighten-5" size="small" @click="backClick()" prepend-icon="mdi-arrow-left-circle">
          <template v-slot:prepend>
             <v-icon ></v-icon>
           </template>
           Back to Examples
        </v-btn>
+
+      <v-banner class="h-auto justify-center align-center text-center text-subtitle-1 example-title pt-0 pb-0" lines="one" density="compact" border=0 position="sticky">
+        Try Examples on:  <v-btn class="ml-2" size="small" color="light-blue-darken-4" prepend-icon="mdi-pencil"  href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase/tree/stackBlitzShowcase">Stackblitz</v-btn>
+      </v-banner>
   </v-row>
 
 
@@ -382,7 +386,8 @@ html, body, #__nuxt {
 
 
 .example-title {
-  color: #01579B !important;
+  background: none;
+  color: white !important;
 }
 
 .main-banner .v-banner-text {
@@ -410,5 +415,11 @@ html, body, #__nuxt {
 .ace-chrome {
   background: #3b2752 !important;
   color: white !important;
+}
+
+.wrap-el {
+  display: flex;
+  flex-flow: column;
+  grid-gap: 1rem;
 }
 </style>
