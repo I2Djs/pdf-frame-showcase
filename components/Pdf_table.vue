@@ -16,7 +16,7 @@
                         return t;
                       }
                     ">
-                    <i-group class="header" block>
+                    <i-group class="header">
                       <i-group
                         v-for="(col, index) in columns"
                         :key="col.column"
@@ -50,7 +50,6 @@
                       v-for="(item, index) in records"
                       :key="index"
                       :class="index + '-header'"
-                      block
                       :class_="
                         (el) => {
                           return setLinePosition(el);
