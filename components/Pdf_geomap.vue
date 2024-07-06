@@ -2,12 +2,9 @@
     <pdfFrame
       id="canvasContainer"
       type="pdf"
-      @on-ready="onInstanceReady"
-      
+      @on-ready="onInstanceReady"      
     >
-      <i-g
-        :bbox= 'false'
-      >
+      <i-g>
         <i-path
           v-for="(d, n) in geoPaths"
           v-bind:key="n"

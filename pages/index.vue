@@ -30,10 +30,10 @@
           <v-hover
             v-slot="{ isHovering, props }">
             <v-card
-              :width="mdAndUp ? 325 : 250"
               max-height="250"
               :elevation="isHovering ? 12 : 2"
               v-bind="props"
+              :class=" mdAndUp ? 'widthClass' : 'widthFull'"
             >
               <v-img
                 class="align-end text-white"
@@ -67,18 +67,12 @@
           cols="12"
           md="5"
           :class="mdAndUp ? 'order-1' : 'order-2'"
-          style="min-height: 300px;"
+          style="min-height: 300px; max-height: 100%; overflow-y: scroll;background-color: #0d1117;"
         >
-          <v-ace-editor
-            v-model:value="rawTemplate"
-            lang="html"
-            theme="chrome"
-            :readOnly="true"
-            style="height: 100%"
-            @init="editorInit" />
+          <div v-html="rawTemplate"></div>
       </v-col>
   </v-row>
-  <v-row class="fill-width">
+  <v-row class="fill-width" v-if="mdAndUp">
     <v-banner  class="d-flex pt-2 pb-2 justify-center text-subtitle-1 text-center font-weight-medium pink-lighten-3 footer-class" color="pink-lighten-3" border=0>
         Powered By <v-btn variant="outlined" elevation="2" href="https://github.com/I2Djs/pdf-frame" color="pink-lighten-3" class="rounded-pill ml-2" density="compact"> PDF-Frame </v-btn>
     </v-banner>
@@ -88,6 +82,7 @@
 
 <script setup>
 import { watch, shallowRef, ref } from 'vue';
+import { codeToHtml } from 'shiki'
 import barChart from './../components/charts/barChart.vue';
 import multiLineChart from './../components/charts/multiLineChart.vue';
 import stepChart from './../components/charts/stepChart.vue';
@@ -150,16 +145,16 @@ import { useDisplay } from 'vuetify'
     snap: 'snaps/snap.png',
     types: ['pdf', 'canvas']
   }, {
+    title: 'PDF-Canvas: Line Chart',
+    component: stepChart,
+    file: 'Pdf_line_chart.vue',
+    snap: 'snaps/lineChart.png',
+    types: ['pdf', 'canvas']
+  }, {
     title: 'PDF-Canvas: US Geo Map',
     component: UsGeomap,
     file: 'US_geo_map.vue',
     snap: 'snaps/us-geo.png',
-    types: ['pdf', 'canvas']
-  }, {
-    title: 'PDF-Canvas: Line Chart',
-    component: Pdf_line_chart,
-    file: 'Pdf_line_chart.vue',
-    snap: 'snaps/canvas-pdf-line-chart.png',
     types: ['pdf', 'canvas']
   }, {
     title: 'Canvas: Step Chart; Resizable',
@@ -277,7 +272,10 @@ import { useDisplay } from 'vuetify'
 
     let response = await $fetch("/components/"+selectedObj.file);
     response = await response.text();
-    rawTemplate.value = response;
+    rawTemplate.value = await codeToHtml(response, {
+      lang: 'vue',
+      theme: 'github-dark-default'
+    })
   }
 
 
@@ -290,11 +288,6 @@ import { useDisplay } from 'vuetify'
       },
     })
   }
-
-
-const editorInit = (editor) => {
-  editor.setReadOnly(true);
-};
 
 function backClick () {
   selectedExample.value = null;
@@ -339,22 +332,6 @@ html, body, #__nuxt {
     width: 100%;
     display: flex;
 /*    align-items: end;*/
-}
-
-.editorParentContainer {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-template-columns: 40% 60%;
-  grid-template-rows: 100%;
-  grid-column-gap: 1rem;
-  justify-content: center;
-  padding-top: 1.5rem;
-}
-
-.editor {
-  height: 100%;
-  width: 100%;
 }
 
 #contextContainer{
@@ -412,14 +389,17 @@ html, body, #__nuxt {
   background: none;
 }
 
-.ace-chrome {
-  background: #3b2752 !important;
-  color: white !important;
-}
-
 .wrap-el {
   display: flex;
   flex-flow: column;
   grid-gap: 1rem;
+}
+
+.widthClass {
+  width: 325px;
+}
+
+.widthFull {
+  width: 100%;
 }
 </style>

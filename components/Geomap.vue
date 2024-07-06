@@ -4,9 +4,6 @@
       :type="type"
       @on-ready="onInstanceReady"
     >
-      <i-g
-        :bbox= 'false'
-      >
         <i-path
           v-for="(d, n) in geoPaths"
           v-bind:key="n"
@@ -14,12 +11,9 @@
           :style="{
               shadowBlur: 20,
               lineWidth: 1,
-              fillStyle: 'rgba(255, 255, 255, 1)',
-              strokeStyle: '#064c75',
+              fillStyle: () => 'hsl('+ Math.round(Math.random() * 360)+', 100%, 40%)'
           }"
         ></i-path>
-      </i-g>
-        
     </pdfFrame>
 </template>
 
@@ -43,6 +37,8 @@ const props = defineProps({
 async function onInstanceReady (layer) {
     width.value = layer.width - 50;
     height.value = layer.height - 50;
+
+    console.log(layer);
 
     let response = await fetch("https://nswamy14.github.io/geoJson/india.district.geo.json");
     let geoJsonData = await response.json();

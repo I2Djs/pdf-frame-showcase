@@ -21,22 +21,18 @@
                         v-for="(col, index) in columns"
                         :key="col.column"
                         class="cell"
-                        :transform="getCellTransform(index, defaultCellWidth[col.column].x)">
+                        :transform="{
+                          translate: [ index * 230, 0]
+                        }">
                         <i-rect
                           :height="26"
-                          :width="defaultCellWidth[col.column].width"
-                          :x="0"
-                          :y="0"
-                          :rx= 3
-                          :ry= 3
-                          class="cell_rect"
+                          :width="235" 
                           :style="{ fillStyle: '#008080'}"></i-rect>
                         <i-text
                           :text="col.label"
-                          :width="defaultCellWidth[col.column].width"
+                          :width="230"
                           :x="0"
                           :y="10"
-                          class="cell_text"
                           :style="{
                             fillStyle: '#ffffff',
                             font: '12px',
@@ -49,7 +45,6 @@
                     <i-group
                       v-for="(item, index) in records"
                       :key="index"
-                      :class="index + '-header'"
                       :class_="
                         (el) => {
                           return setLinePosition(el);
@@ -59,26 +54,23 @@
                         v-for="(col, ind) in columns"
                         :key="ind"
                         class="cell"
-                        :transform="getCellTransform(ind, defaultCellWidth[col.column].x)">
+                        :transform="{
+                          translate: [ ind * 230, 0]
+                        }">
                         <i-text
                           :text="getColumnText(item, col)"
-                          :width="defaultCellWidth[col.column].width - 10"
+                          :width="230 - 10"
                           :x="5"
-                          class="cell_text"
                           :style="{
                             fillStyle: '#363636',
-                            font: '10px Arial',
+                            font: '10px Helvetica',
                             textbaseline: 'middle',
                             baseline: 'middle',
                             textAlign: 'center'
                           }"></i-text>
                       </i-group>
                       <i-line
-                        :x1="0"
-                        :y1="0"
                         :x2="pdfCfg.width - 100"
-                        :y2="0"
-                        class="cell_line"
                         :style="{ strokeStyle: '#e3e3e3' }"></i-line>
                     </i-group>
                   </i-group>
@@ -87,16 +79,6 @@
 </template>
 
 <script setup>
-  import { ref, computed } from "vue";
-  let pdfConfig = {
-    margins: {
-        top: 30,
-        bottom: 20
-    }
-  }
-
-  // margin: 50,
-  let instance = null;
   const configObj = {
       margins: {
         top: 50,
@@ -109,6 +91,8 @@
       height: 900,
       width: 707,
   };
+
+  let id = "sample-pdf-frame-table";
 
   let columns = [{
         column: "hostname",
@@ -123,24 +107,6 @@
         label: "OS family",
         width: 0.3
     }]
-
-
-  const defaultCellWidth = computed(() => {
-      const width = pdfCfg.width;
-      const defaultWidth = width / columns.length;
-      let runningWidth = 0;
-      const columnWidth = columns.reduce((p, c) => {
-            p[c.column] = {
-              width: c.width * width || defaultWidth,
-              x: runningWidth * width,
-            };
-            runningWidth += c.width;
-            return p;
-          }, {});
-      return columnWidth;
-    });
-
-    // const runningIndex = 0;
 
     function getRowTransform(el) {
       let runningY = 0;
@@ -159,9 +125,6 @@
           let bbY = bbox.height * 0.5 - cH.height * 0.65;
           y = y !== undefined ? y : (bbY < 5 ? 5 : bbY);
           this.fetchEl("text").setAttr("y", y);
-          // this.setAttr("transform", {
-          //     translate: [t.translate[0], bbox.height * 0.5 - cH.height * 0.65],
-          // });
         });
         runningY += bbox.height < 30 ? 30 : bbox.height * 1 + 12.5;
       });
@@ -177,10 +140,6 @@
         line.setAttr("y1", y + 15).setAttr("y2", y + 15);
       }
       return "record";
-    }
-
-    function getCellTransform(index, x) {
-      return "translate(" + x + ",0)";
     }
 
     function getColumnText(record, column) {

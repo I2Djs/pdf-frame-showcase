@@ -118,6 +118,14 @@ let colors = {
   value3: '#ff5779',
 };
 
+const props = defineProps({
+    type: {
+      type: String,
+      required: true,
+      default: 'canvas',
+    },
+  });
+
 const lineInstance = line()
   .x((d) => timeScale(new Date(d.label)))
   .curve(curveCardinal);

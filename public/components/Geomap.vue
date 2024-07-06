@@ -4,9 +4,6 @@
     :type="type"
     @on-ready="onInstanceReady"
   >
-    <i-g
-      :bbox= 'false'
-    >
       <i-path
         v-for="(d, n) in geoPaths"
         v-bind:key="n"
@@ -14,11 +11,9 @@
         :style="{
           shadowBlur: 20,
             lineWidth: 1,
-            fillStyle: 'rgba(255, 255, 255, 1)',
-            strokeStyle: '#064c75',
+            fillStyle: () => 'hsl('+ (Math.random() * 360)+', 100, 40)'
         }"
       ></i-path>
-    </i-g>
       
   </pdfFrame>
 </template>

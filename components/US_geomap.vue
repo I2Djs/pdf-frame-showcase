@@ -23,9 +23,7 @@
           :style="{ fillStyle: 'grad(grad3)' }"
         />
     </i-group>
-    <i-g
-      :bbox= 'false'
-    >
+    <i-g>
       <i-path
         v-for="(d, n) in geoPaths"
         v-bind:key="n"

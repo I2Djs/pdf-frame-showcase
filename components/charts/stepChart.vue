@@ -116,6 +116,14 @@ let width = ref(0);
 let height = ref(0);
 let dataPoints = ref('');
 
+const props = defineProps({
+    type: {
+      type: String,
+      required: true,
+      default: 'canvas',
+    },
+  });
+
 const lineInstance = line()
   .x((d) => timeScale(new Date(d.label)))
   .y((d) => height.value - padding.bottom - heightScale(d.value))
