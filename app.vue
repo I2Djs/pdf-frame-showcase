@@ -34,9 +34,9 @@
             </v-label>
           </v-row>
           <v-row class="fill-width mt-0 " :class=" smAndDown ? 'px-0' : 'px-10'">
-            <v-banner class="justify-center d-flex text-center font-weight-medium main-banner pt-0 px-4" justify="space-around" :stacked="true"  position="sticky" border=0 >
+            <v-banner class="justify-center d-flex text-center font-weight-medium main-banner pt-0 px-0" justify="space-around" :stacked="true"  position="sticky" border=0 >
                 <template v-slot:text>
-                  <p class="first-desc" :class=" smAndDown ? 'text-subtitle-2' : 'text-h5'">
+                  <p class="first-desc" :class=" smAndDown ? 'text-subtitle-1' : 'text-h5'">
                     A web framework for creating dynamic and complex PDFs and Canvas graphics with the declarative templates.
                   </p>
                   <p class="second-desc" :class=" smAndDown ? 'text-subtitle-2' : 'text-h6'">
@@ -87,7 +87,7 @@
 .main-banner .v-banner-text {
   padding-inline-end: 0px !important;
   color: white !important;
-  row-gap: 1rem;
+  row-gap: 0.5rem;
 }
 
 .main-sub-title {

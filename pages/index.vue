@@ -1,5 +1,5 @@
 <template>
-  <v-row v-if="!selectedExample" class="fill-width px-10 pb-8" justify="space-around">
+  <v-row v-if="!selectedExample" class="fill-width px-10 pb-4" justify="space-around">
     <div class="d-flex justify-space-evenly" :class="mdAndUp ? 'w-75' : 'w-100'">
       <v-text-field
         label="Search Example"
@@ -376,7 +376,7 @@ html, body, #__nuxt {
 
 .main-banner .v-banner-text {
   padding-inline-end: 0px !important;
-  row-gap: 1rem;
+  row-gap: 0.5rem;
 }
 
 .input-select-example {
