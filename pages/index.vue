@@ -52,7 +52,7 @@
     </template>
   </v-row>
 
-  <v-row v-else class="fill-width justify-space-around pb-1 px-10" style="min-height: calc(100% - 17rem); max-height: calc(100%); overflow-y: auto;" >
+  <v-row v-else class="fill-width justify-space-around pb-1 px-10" :class=" mdAndUp ? 'px-10 h-100 overflow-auto' : 'px-5 h-auto' " style=" flex-grow: 1;" >
       <v-col
           cols="12"
           md="7"
@@ -287,6 +287,7 @@ import { useDisplay } from 'vuetify'
         type
       },
     })
+    window.scrollTo(0, 0);
   }
 
 function backClick () {
@@ -294,6 +295,7 @@ function backClick () {
   selectedValue.value = null;
   exampleList.value = full_exampleList;
   router.push({ path: '/', replace: true });
+  window.scrollTo(0, 0);
 }
 
 function onInput (input) {
