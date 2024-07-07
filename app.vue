@@ -36,7 +36,7 @@
           <v-row class="fill-width" :class=" smAndDown ? 'px-0' : 'px-10'">
             <v-banner class="justify-center d-flex text-center font-weight-medium main-banner pt-0" :class=" smAndDown ? 'text-subtitle-2' : 'text-h6'" color="purple-accent-2" justify="space-around" :stacked="true"  position="sticky" border=0 >
                 <template v-slot:text>
-                  A web framework for client-side PDF and Canvas graphics rendering with declarative HTML template. Component support for Vuejs, Nuxtjs frameworks.
+                  A web framework for creating dynamic PDFs and visualizations in the browser using declarative HTML templates. Provides component support for Vue.js and Nuxt.js
                 </template>
             </v-banner>
           </v-row>

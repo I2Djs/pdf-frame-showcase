@@ -24,7 +24,7 @@
   </v-row>
 
 
-  <v-row v-if="!selectedExample" class="pb-1 px-10" :class=" mdAndUp ? 'h-100 overflow-auto' : 'h-auto' " style=" flex-grow: 1;">
+  <v-row v-if="!selectedExample" class="pb-1 " :class=" mdAndUp ? 'px-10 h-100 overflow-auto' : 'px-5 h-auto' " style=" flex-grow: 1;">
     <template v-for="(item, i) in exampleList" :key="i">
       <v-col class="d-flex justify-space-evenly align-content-start flex-wrap ga-3">
           <v-hover
