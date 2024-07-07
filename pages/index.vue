@@ -1,5 +1,6 @@
 <template>
   <v-row v-if="!selectedExample" class="fill-width px-10 pb-8" justify="space-around">
+    <div class="d-flex justify-space-evenly" :class="mdAndUp ? 'w-75' : 'w-100'">
       <v-text-field
         label="Search Example"
         variant="outlined"
@@ -9,6 +10,7 @@
          class="input-select-example"
         @update:modelValue="onInput"
       > </v-text-field>
+    </div>
   </v-row>
   <v-row v-else class="fill-width px-10 pb-8" :class="mdAndUp ? 'justify-left' : 'justify-center wrap-el'" style="height:auto">
        <v-btn variant="outlined" color="purple-lighten-5" size="small" @click="backClick()" prepend-icon="mdi-arrow-left-circle">
@@ -354,6 +356,7 @@ html, body, #__nuxt {
   position: relative;
   background: linear-gradient(to right, #023c73 , #5f0b9c, #b814c4);
   border-radius: 1rem;
+  overflow: scroll;
 }
 
 .pdfContainer {
@@ -373,6 +376,7 @@ html, body, #__nuxt {
 
 .main-banner .v-banner-text {
   padding-inline-end: 0px !important;
+  row-gap: 1rem;
 }
 
 .input-select-example {

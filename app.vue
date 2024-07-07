@@ -28,15 +28,20 @@
         </v-app-bar>
       <v-main class="d-flex justify-center">
         <v-container fluid class="d-flex flex-column pt-5" :class=" smAndDown ? 'px-6 overflow-auto' : 'px-12'" style="height: auto;">
-          <v-row class="fill-width px-10 pt-6 pb-4 justify-center">
+          <v-row class="fill-width px-10 pt-4 pb-4 justify-center">
             <v-label class="text-h2 text-center font-weight-bold main-banner-title" :class=" smAndDown ? 'text-h4' : 'text-h2'" justify="space-around" :stacked="true"  position="sticky" border=0 >
                 PDF-Frame
             </v-label>
           </v-row>
-          <v-row class="fill-width" :class=" smAndDown ? 'px-0' : 'px-10'">
-            <v-banner class="justify-center d-flex text-center font-weight-medium main-banner pt-0" :class=" smAndDown ? 'text-subtitle-2' : 'text-h6'" color="purple-accent-2" justify="space-around" :stacked="true"  position="sticky" border=0 >
+          <v-row class="fill-width mt-0 " :class=" smAndDown ? 'px-0' : 'px-10'">
+            <v-banner class="justify-center d-flex text-center font-weight-medium main-banner pt-0 px-4" justify="space-around" :stacked="true"  position="sticky" border=0 >
                 <template v-slot:text>
-                  A web framework for creating dynamic PDFs and visualizations in the browser using declarative HTML templates. Provides component support for Vue.js and Nuxt.js
+                  <p class="first-desc" :class=" smAndDown ? 'text-subtitle-2' : 'text-h5'">
+                    A web framework for creating dynamic and complex PDFs and Canvas graphics with the declarative templates.
+                  </p>
+                  <p class="second-desc" :class=" smAndDown ? 'text-subtitle-2' : 'text-h6'">
+                    Supports <a href="https://nuxt.com/modules/nuxt-pdf-frame">Nuxt.js</a> and <a href="https://vuejs.org/">Vue.js</a>, providing declarative and reactive bindings for <a href="https://github.com/I2Djs/I2Djs"> I2Djs </a>.
+                  </p>
                 </template>
             </v-banner>
           </v-row>
@@ -63,7 +68,6 @@
     description: "PDF-Frame is a JavaScript web framework for client-side PDF/Canvas rendering. With its declarative HTML syntax and semantics, it offers an easy and efficient way to define PDF/Canvas graphical content. It follows syntax similar to SVG's and provides component support for popular frameworks like Vue.js, Nuxt.js, and React (work in progress). Powered by i2djs, PDF-Frame presently supports rendering outputs as PDF and Canvas formats.",
     ogDescription: "PDF-Frame is a JavaScript web framework for client-side PDF/Canvas rendering. With its declarative HTML syntax and semantics, it offers an easy and efficient way to define PDF/Canvas graphical content. It follows syntax similar to SVG's and provides component support for popular frameworks like Vue.js, Nuxt.js, and React (work in progress). Powered by i2djs, PDF-Frame presently supports rendering outputs as PDF and Canvas formats.",
     ogImage: "https://raw.githubusercontent.com/I2Djs/pdf-frame/main/assets/pdf-frame.svg",
-
   })
   
   const { smAndDown } = useDisplay()
@@ -77,22 +81,18 @@
 
 .main-banner {
   background: none !important;
-  color: white !important;
-}
-
-.main-banner {
-  background: none !important;
-  color: #cbd5e1 !important;
+  color: #e8dede !important;
 }
 
 .main-banner .v-banner-text {
   padding-inline-end: 0px !important;
   color: white !important;
+  row-gap: 1rem;
 }
 
 .main-sub-title {
   background: none !important;
-  /* color: #ff76a8 !important; */
+  /* color: #e8dede !important; */
 }
 
 .example-title {
@@ -126,6 +126,16 @@
   background: linear-gradient(to right,#b77cba, #e76f96, #b77cba);
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
+}
+
+.first-desc {
+  font-weight: 300;
+  color: rgba(255,255,255, 0.9);
+}
+
+.second-desc {
+  font-weight: 300;
+  color: #ffadc8;
 }
 
 </style>
