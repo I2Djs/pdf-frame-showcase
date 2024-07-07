@@ -1,7 +1,7 @@
 <template>
     <div class="chart-container">
         <pdf-frame type="canvas"  @on-ready="onLayerReady" @on-resize="onLayerResize">
-            <i-group class="backGround">
+            <!-- <i-group class="backGround">
                 <i-linearGradient
                     id="grad3" :x1="0" :y1="0" :x2="100" :y2="100"
                     :colorStops="[
@@ -19,7 +19,7 @@
                   <i-rect :x="0" :y="0" :width="width" :height="height" rx=20 ry=20
                     :style="{ fillStyle: 'grad(grad3)' }"
                   />
-              </i-group>
+              </i-group> -->
               
             <i-group :transform="chartTransform">
                 <i-path

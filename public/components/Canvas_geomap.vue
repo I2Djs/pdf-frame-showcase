@@ -4,9 +4,6 @@
       type="canvas"
       @on-ready="onInstanceReady"
     >
-      <i-g
-        :bbox= 'false'
-      >
         <i-path
           v-for="(d, n) in geoPaths"
           v-bind:key="n"
@@ -18,8 +15,6 @@
               strokeStyle: '#42baff',
           }"
         ></i-path>
-      </i-g>
-        
     </pdfFrame>
 </template>
 

@@ -7,23 +7,6 @@
       @on-resize="onInstanceResize"
     >
       <i-linearGradient
-        id="grad3" :x1="0" :y1="0" :x2="100" :y2="100"
-        :colorStops="[
-          {
-            color: '#023c73', offset: 0,
-          },
-          {
-            color: '#5f0b9c', offset: 50,
-          },
-          {
-            color: '#b814c4', offset: 100,
-          },
-        ]"
-      />
-      <i-rect :x="0" :y="0" :width="width" :height="height" rx=50 ry=50
-        :style="{ fillStyle: 'grad(grad3)' }"
-      />
-      <i-linearGradient
         id="grad4" :x1="0" :y1="0" :x2="0" :y2="100"
         :colorStops="[
           {

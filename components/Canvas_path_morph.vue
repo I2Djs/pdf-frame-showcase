@@ -1,28 +1,9 @@
 <template>
     <pdfFrame id="nswamyid" type="canvas" @on-ready="onInstanceReady"
       @on-resize="onInstanceResize">
-        <i-linearGradient
-          id="grad3" :x1="0" :y1="0" :x2="100" :y2="100"
-          :colorStops="[
-            {
-              color: '#023c73', offset: 0,
-            },
-            {
-              color: '#5f0b9c', offset: 50,
-            },
-            {
-              color: '#b814c4', offset: 100,
-            },
-          ]"
-        />
-        <i-rect
-          :x="0" :y="0" :width="width" :height="height" rx=20 ry=20
-          :style="{ fillStyle: 'grad(grad3)' }"
-        />
-      <!-- <i-g :transform="{translate: [ width * 0.15, 100]}"> -->
       <i-g :transform="{
           scale: [viewportScaleX, viewportScaleY]
-      }">
+      }"> 
         <i-path
           :transform="{
             translate: [ 100, 100]
@@ -71,7 +52,7 @@
     let sx = (width.value / 1000) > 1 ? 1 : (width.value / 1000);
     let sy = (height.value / 800) > 1 ? 1 : (height.value / 800);
     
-    viewportScaleX = viewportScaleY = Math.min(sx, sy);
+    viewportScaleX.value = viewportScaleY.value = Math.min(sx, sy);
   }
 </script>
 

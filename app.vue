@@ -27,8 +27,8 @@
           </div>
         </v-app-bar>
       <v-main class="d-flex justify-center">
-        <v-container fluid class="d-flex flex-column pt-5" :class=" smAndDown ? 'px-6' : 'px-12'" style="height: auto;">
-          <v-row class="fill-width px-10 pt-6 pb-4 justify-center d-flex">
+        <v-container fluid class="d-flex flex-column pt-5" :class=" smAndDown ? 'px-6 overflow-auto' : 'px-12'" style="height: auto;">
+          <v-row class="fill-width px-10 pt-6 pb-4 justify-center">
             <v-label class="text-h2 text-center font-weight-bold main-banner-title" :class=" smAndDown ? 'text-h4' : 'text-h2'" justify="space-around" :stacked="true"  position="sticky" border=0 >
                 PDF-Frame
             </v-label>
@@ -36,7 +36,7 @@
           <v-row class="fill-width" :class=" smAndDown ? 'px-0' : 'px-10'">
             <v-banner class="justify-center d-flex text-center font-weight-medium main-banner pt-0" :class=" smAndDown ? 'text-subtitle-2' : 'text-h6'" color="purple-accent-2" justify="space-around" :stacked="true"  position="sticky" border=0 >
                 <template v-slot:text>
-                  A web framework for client-side PDF and Canvas graphics rendering with HTML template. Component support for Vuejs, Nuxtjs frameworks.
+                  A web framework for client-side PDF and Canvas graphics rendering with declarative HTML template. Component support for Vuejs, Nuxtjs frameworks.
                 </template>
             </v-banner>
           </v-row>

@@ -24,7 +24,7 @@
   </v-row>
 
 
-  <v-row v-if="!selectedExample" class="pb-1 px-10" style="min-height: calc(100% - 20rem); max-height: calc(100%); overflow-y: auto;">
+  <v-row v-if="!selectedExample" class="pb-1 px-10" :class=" mdAndUp ? 'h-100 overflow-auto' : 'h-auto' " style=" flex-grow: 1;">
     <template v-for="(item, i) in exampleList" :key="i">
       <v-col class="d-flex justify-space-evenly align-content-start flex-wrap ga-3">
           <v-hover
@@ -72,7 +72,7 @@
           <div v-html="rawTemplate"></div>
       </v-col>
   </v-row>
-  <v-row class="fill-width" v-if="mdAndUp">
+  <v-row class="fill-width">
     <v-banner  class="d-flex pt-2 pb-2 justify-center text-subtitle-1 text-center font-weight-medium pink-lighten-3 footer-class" color="pink-lighten-3" border=0>
         Powered By <v-btn variant="outlined" elevation="2" href="https://github.com/I2Djs/pdf-frame" color="pink-lighten-3" class="rounded-pill ml-2" density="compact"> PDF-Frame </v-btn>
     </v-banner>
@@ -350,6 +350,8 @@ html, body, #__nuxt {
   height: 100%;
   width: 100%;
   position: relative;
+  background: linear-gradient(to right, #023c73 , #5f0b9c, #b814c4);
+  border-radius: 1rem;
 }
 
 .pdfContainer {

@@ -68,18 +68,18 @@
           :x="30"
           :y="280"
           text="PDF-Frame"
-          :style="{ fill: '#ffffff',textAlign:'justify' }"
+          :style="{ fill: '#ffffff',textAlign:'center', font: '35px Helvetica-Bold' }"
         />
         <i-text 
           :x="30"
-          :y="300"
+          :y="350"
           :width="540"
           text="PDF-frame is a web framework for client side PDF and Canvas graphics generation. With its declarative HTML syntax and semantics, it offers a easy way to define PDF graphical content efficiently. It provides component support for popular frameworks like Vue, nuxt and React(work in progress). Built on the i2djs framework, PDF-frame presently supports rendering outputs in PDF and Canvas formats."
-          :style="{ fill: '#ffffff',textAlign:'justify' }"
+          :style="{ fill: '#ffffff',textAlign:'justify', font: '12px Times-Italic' }"
         />
         <i-rect v-for="n in 30"
           :x="500 - n*15"
-          :y="200 - n*2.5"
+          :y="250 - n*2.5"
           :width="n*6"
           :height="n*6"
           transform="translate(10,280)"
@@ -87,7 +87,7 @@
         />
         <i-circle v-for="n in 30"
           :cx="30 + n*15"
-          :cy="100"
+          :cy="150"
           :r="10 + n*2"
           transform="translate(10,580)"
           :style="{ fill:'hsl(' + ((n * 10) % 360) + ',100%,50%)',opacity: 0.2, strokeStyle: '#000000', lineWidth: 1 }"

@@ -78,12 +78,10 @@
 </template>
 
 <script setup>
-  import { ref, watch,onMounted } from "vue";
+  import { ref } from "vue";
   let t = ref(0);
   let width = ref(900);
   let height = ref(700);
-  let viewportScaleX = ref(0);
-  let viewportScaleY = ref(0);
 
   const props = defineProps({
     type: {
@@ -93,18 +91,4 @@
     },
   });
 
-  // function onInstanceResize(data) {
-  //   // width.value = data.width;
-  //   // height.value = data.height;
-
-  //   // let sx = (width.value / 1000) > 1 ? 1 : (width.value / 1000);
-  //   // let sy = (height.value / 800) > 1 ? 1 : (height.value / 800);
-
-  //   // viewportScaleX = viewportScaleY = Math.min(sx, sy);
-  // }
-
-  // function onInstanceReady (layer) {
-  //   width.value = layer.width;
-  //   height.value = layer.height;
-  // }
 </script>
