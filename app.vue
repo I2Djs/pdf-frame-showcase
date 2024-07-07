@@ -40,7 +40,7 @@
                     A web framework for creating dynamic and complex PDFs and Canvas graphics with the declarative templates.
                   </p>
                   <p class="second-desc" :class=" smAndDown ? 'text-subtitle-2' : 'text-h6'">
-                    Supports <a href="https://nuxt.com/modules/nuxt-pdf-frame">Nuxt.js</a> and <a href="https://vuejs.org/">Vue.js</a>, providing declarative and reactive bindings for <a href="https://github.com/I2Djs/I2Djs"> I2Djs </a>.
+                    Supports <a href="https://nuxt.com/modules/nuxt-pdf-frame">Nuxt.js</a> and <a href="https://vuejs.org/">Vue.js</a>, providing declarative and reactive bindings for <a href="https://github.com/I2Djs/I2Djs"> I2Djs </a>
                   </p>
                 </template>
             </v-banner>
