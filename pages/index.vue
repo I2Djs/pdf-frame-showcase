@@ -6,6 +6,7 @@ import Canvas_path_animation from './../components/Canvas_path_animation.vue';
 import Canvas_path_morph from './../components/Canvas_path_morph.vue';
 import Pdf_example from './../components/Pdf_example.vue';
 import Pdf_custom_fonts from './../components/Pdf_custom_fonts.vue';
+import Pdf_text_decoration from './../components/Pdf_text_decoration.vue';
 import Pdf_language_fonts from './../components/Pdf_language_fonts.vue';
 import Canvas_Helix_animation from './../components/Canvas_helix_animation.vue';
 import Canvas_rect_animation from './../components/Canvas_animate.vue';
@@ -46,6 +47,9 @@ let exampleList = [{
   }, {
     title: 'PDF: Language Fonts',
     component: Pdf_language_fonts 
+  }, {
+    title: 'PDF: Text Decoration',
+    component: Pdf_text_decoration 
   }, {
     title: 'Canvas: Tadpole Animation',
     component: Canvas_tadpole_animation
