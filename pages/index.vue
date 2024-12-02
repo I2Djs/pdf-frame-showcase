@@ -93,6 +93,7 @@ import Canvas_path_animation from './../components/Canvas_path_animation.vue';
 import Canvas_path_morph from './../components/Canvas_path_morph.vue';
 import Pdf_example from './../components/Pdf_example.vue';
 import Pdf_custom_fonts from './../components/Pdf_custom_fonts.vue';
+import Pdf_text_decoration from './../components/Pdf_text_decoration.vue';
 import Pdf_language_fonts from './../components/Pdf_language_fonts.vue';
 import Canvas_Helix_animation from './../components/Canvas_helix_animation.vue';
 import Canvas_rect_animation from './../components/Canvas_animate.vue';
@@ -193,6 +194,12 @@ import { useDisplay } from 'vuetify'
     component: Pdf_language_fonts,
     file: 'Pdf_language_fonts.vue',
     snap: 'snaps/languageFonts.png',
+    types: ['pdf']
+  }, {
+    title: 'PDF: Text Decorations',
+    component: Pdf_text_decoration,
+    file: 'Pdf_text_decoration.vue',
+    snap: 'snaps/text-decoration.png',
     types: ['pdf']
   }, {
     title: 'Canvas: Tadpole Animation',
