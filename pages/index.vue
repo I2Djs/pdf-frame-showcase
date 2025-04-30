@@ -330,12 +330,7 @@ html, body, #__nuxt {
 .container {
     height: 100%;
     width: 100%;
-/*    display: grid;*/
-    /*grid-template-rows: 4rem 1fr;
-    grid-template-columns: 100%;
-    grid-row-gap: 1rem;
-    justify-content: center;
-    padding-top: 3rem;*/
+    overflow: hidden;
 }
 
 .exampleSelector {
@@ -349,21 +344,26 @@ html, body, #__nuxt {
   height: 100%;
   width: 100%;
   position: relative;
+  max-height: calc(100% - 1rem);
+  overflow: scroll;
 }
 
 #canvasContainer{
   height: 100%;
   width: 100%;
   position: relative;
+  max-height: calc(100% - 1rem);
+  overflow: scroll;
 }
 
 .canvasParentContainer {
   height: 100%;
   width: 100%;
   position: relative;
+  max-height: calc(100% - 1rem);
   background: linear-gradient(to right, #023c73 , #5f0b9c, #b814c4);
   border-radius: 1rem;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .pdfContainer {
