@@ -143,6 +143,7 @@ html, body, #__nuxt {
     grid-row-gap: 1rem;
     justify-content: center;
     padding-top: 3rem;
+    overflow: hidden;
 }
 
 .exampleSelector {
@@ -155,6 +156,9 @@ html, body, #__nuxt {
 .editorParentContainer {
   height: 100%;
   width: 100%;
+  position: relative;
+  max-height: calc(100% - 4rem);
+  overflow: hidden;
 }
 
 #canvasContainer{
@@ -166,6 +170,9 @@ html, body, #__nuxt {
 .canvasParentContainer {
   height: 100%;
   width: 100%;
+  position: relative;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 .pdfContainer {
