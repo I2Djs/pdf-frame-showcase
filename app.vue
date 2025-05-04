@@ -20,7 +20,7 @@
               Guide
             </v-btn>
 
-            <v-btn v-if="!smAndDown" density="comfortable" href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase" class="link-color" rounded="xs" size="x" :slim="true">
+            <v-btn v-if="!smAndDown" density="comfortable" href="https://stackblitz.com/~/github.com/I2Djs/pdf-frame-showcase/tree/stackBlitzShowcase" class="link-color" rounded="xs" size="x" :slim="true">
               <v-icon size="x-large">mdi-code-tags</v-icon>
               Examples
             </v-btn>
